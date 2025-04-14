@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require '../../vendor/autoload.php'; // PHPMailer
 require '../../includes/connection_db.php'; // Make sure this file sets up your $conn = mysqli_connect(...)
@@ -34,11 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail = new PHPMailer(true);
 
         try {
+            
+
+            
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = '2301110345@student.buksu.edu.ph';
-            $mail->Password   = 'ahko hfnu lmfw ibkl'; // ⚠️ Put this in env
+            $mail->Username   = $_ENV['EMAIL_ADMIN'];
+            $mail->Password   = $_ENV['EMAIL_PASS'];
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 
