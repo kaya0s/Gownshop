@@ -1,0 +1,323 @@
+/* Resetting some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: whitesmoke;
+    overflow: hidden; /* Disables scrolling */
+    height: 100vh; /* Ensures the body takes full viewport height */ /* Ensures full width */
+}
+
+/* Dashboard Layout */
+.dashboard {
+    display: flex;
+    height: 100vh;
+    flex-wrap: wrap;  /* Make the dashboard wrap on small screens */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: sticky;
+    width: 20%;
+    background-color: #186864  ;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgb(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-out;
+
+}
+
+.sidebar .heads img {
+    margin-bottom: 20px;
+    height: 180px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.sidebar .heads {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    font-size: 15px;
+
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.sidebar .menu li {
+    margin-bottom: 20px;
+    margin-left: 30px;
+    font-size: large;
+}
+
+.sidebar .menu li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+.sidebar .menu li button {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar .menu li span {
+    margin-left: 20px;
+    font-weight: lighter;
+}
+
+
+.sidebar .menu li a img {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar .menu li a:hover {
+    background-color:  #22b0a9;
+}
+.sidebar .menu li button:hover {
+    background-color:  #22b0a9;
+}
+
+
+.sidebar .menu li a:active {
+    background-color: #000000;
+}
+
+.toggle-btn {
+    display: none;  
+    position: relative;
+    color:rgb(255, 255, 255);
+    font-size: 30px;
+    z-index: 1001;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+/* Main Content Layout */
+.main-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 80%;
+    padding: 0px;
+    
+}
+.content{
+    overflow-y: auto; /* Enables vertical scroll if needed */
+    height: 84vh;
+    overflow-x:hidden;
+}
+
+/* Topbar */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #186864;
+    color: white;
+    box-shadow: 0px 4px 8px rgb(0, 0, 0, 0.3);
+}
+
+.topbar .search input {
+    padding: 10px;
+    border-radius: 6px;
+    color: white;
+    background-color: #1E201E;
+    font-size: 16px;
+    margin-left: 20px;
+}
+
+span {
+    font-size: larger;
+    font-weight: 600;
+}
+
+.topbar .user-profile {
+    display: flex;
+    align-items: center;
+}
+
+
+.topbar .user-profile img {
+    margin-left: 30px;
+    border-radius: 50px;
+    height: 50px;
+}
+
+/* Product Cards */
+.row {
+        
+    display: flex;
+    flex-wrap: wrap; /* Cards will stack on smaller screens */
+    justify-content: flex-start;
+}
+
+.card {
+    
+    box-shadow: 0px 4px 8px rgb(0, 0, 0, 0.3);
+    padding-top: 10px;
+    margin: 10px;
+    width: 16rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-body-product {
+    display: flex;
+    flex-direction: column;
+    background-color: #272727;
+}
+
+.card-body .card-text {
+    color: white;
+}
+
+.card-body .card-title {
+    color: white;
+    margin-top: 20px;
+}
+
+
+/* Responsive Media Queries */
+@media screen and (max-width: 1200px) {
+    .sidebar {
+        width: 25%;
+    }
+
+    .main-content {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .sidebar {
+        width: 30%;
+    }
+
+    .main-content {
+        width: 70%;
+    }
+
+    .topbar .search input {
+        width: 80%;
+    }
+    .dashGreet{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .main-content {
+        width: 100%;
+    
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topbar .search input {
+        width: 100%;
+    }
+    
+    /* Stack cards vertically on small screens */
+    .row {
+        justify-content: center;
+
+
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .topbar .user-profile {
+        display: none;
+        align-items: center;
+    }
+    .toggle-btn {
+      display: block;
+      color: #22b0a9; 
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    .topbar {
+        padding: 10px;
+    }
+
+    .topbar .search input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    .card-body-product .card-title {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .main-content{
+        margin: 0;
+    }
+    
+    
+    
+}
+@media (max-width: 768px) {
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      z-index: 1000;
+    }
+  
+    .sidebar.active {
+      transform: translateX(0);
+    }
+    .card{
+        width: 12rem;
+    }
+    
+    
+  }

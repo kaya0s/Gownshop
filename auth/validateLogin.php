@@ -30,8 +30,8 @@
 
                 if ($stmt->num_rows > 0) {
                 // Prepare your statement to get both password and usertype
-                $sql = "SELECT password, usertype FROM users WHERE username = ?";
-                $stmt = $conn->prepare($sql);
+                $sql = "SELECT password, user_type FROM users WHERE username = ?";
+                $stmt = mysqli_prepare($conn,$sql);
                 $stmt->bind_param("s", $_POST['username']);
                 $stmt->execute();
                 $stmt->store_result();
@@ -39,10 +39,6 @@
                 // Bind both password and usertype from the result
                 $stmt->bind_result($db_password, $usertype);
                 $stmt->fetch();
-
-
-                                   
-                
 
                     // Verify the password
                     if (password_verify($_POST['password'], $db_password)) {
@@ -56,9 +52,9 @@
 
                         // Redirect based on usertype
                         if ($usertype === 'admin') {
-                            header('Location: ../pages/admin.php');
+                            header('Location: ../admin/dashboard.php');
                         } else if ($usertype === 'customer') {
-                            header('Location: ../pages/customer.php');
+                            header('Location: ../customer/customer.php');
                         } else {
                             // Fallback if usertype is something unexpected
                             $_SESSION['loginmsg'] = "Unknown user type";
@@ -121,7 +117,7 @@
                 header('Location: register.php');
                 exit;
             } elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                usleep(250000); // 250000 microseconds = 0.5 seconds
+                usleep(250000); 
                 $_SESSION['signupmsg'] = "Invalid email format";
                 header('Location: register.php');
                 exit;
@@ -153,7 +149,7 @@
             $stmt->store_result();
             
             if ($stmt->num_rows > 0) {
-                usleep(550000); // 250000 microseconds = 0.5 seconds
+                usleep(550000); 
                 $_SESSION['signupmsg'] = "account already taken";
                 header('Location:register.php');
                 exit;
@@ -166,14 +162,14 @@
             $stmt->bind_param("sssssss", $_POST['firstname'], $_POST['lastname'], $_POST['username'], $_POST['email'],$hashed_password,$_POST['phone'],$_POST['address']);
             
             if ($stmt->execute()) {
-                usleep(550000); // 250000 microseconds = 0.5 seconds
+                usleep(550000);
                
                 $_SESSION['successSignedup'] ="set";
                 header('Location:../index.php');
                 
                 exit;
             } else {
-                usleep(550000); // 250000 microseconds = 0.5 seconds
+                usleep(550000); 
                 $_SESSION['signupmsg'] ='Error in signup';
                 header('Location:../pages/none.php');
                 
@@ -214,3 +210,4 @@
         $loginSignup->signup();  
     }
 ?>
+
