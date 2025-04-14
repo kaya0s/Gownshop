@@ -28,21 +28,27 @@
                 $stmt->execute();
                 $stmt->store_result();
 
-                                // Prepare your statement to get both password and usertype
+                if ($stmt->num_rows > 0) {
+                // Prepare your statement to get both password and usertype
                 $sql = "SELECT password, usertype FROM users WHERE username = ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("s", $_POST['username']);
                 $stmt->execute();
                 $stmt->store_result();
+                
+                // Bind both password and usertype from the result
+                $stmt->bind_result($db_password, $usertype);
+                $stmt->fetch();
 
-                if ($stmt->num_rows > 0) {
-                    // Bind both password and usertype from the result
-                    $stmt->bind_result($db_password, $usertype);
-                    $stmt->fetch();
+
+                                   
+                
 
                     // Verify the password
                     if (password_verify($_POST['password'], $db_password)) {
                         session_start();
+
+                        
                         $_SESSION['username'] = $_POST['username'];
                         $_SESSION['usertype'] = $usertype;
 
@@ -138,7 +144,7 @@
                 exit;
             }
         
-            require_once('../config/connection_db.php');
+            require_once('../includes/connection_db.php');
 
             // Check if username already exists 
             $stmt = $conn->prepare("SELECT user_id FROM users WHERE username = ? OR email = ?");
