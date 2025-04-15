@@ -15,8 +15,8 @@
                 <img src="../assets/images/HJ Logo.png "  alt="This is a logo" style="margin-bottom: -20px; width: 200px; ">
 
                 <form action="validateLogin.php" method="POST">
-                <h1 style="color: black; margin-bottom: -10px;">Welcome to HJ Gowns</h1>
-                <h3 style="color: black; text-align: center; ">Create an Account</h3>
+                    <h1 style="color: black; margin-bottom: -10px;">Welcome to HJ Gowns</h1>
+                    <h3 style="color: black; text-align: center; ">Create an Account</h3>
                     <div class="input-group" >
                         <img src="../assets/images/user (1).png" alt="Username icon" class="input-icon">
                         <input type="text" placeholder="firstname" name="firstname" >
@@ -58,11 +58,11 @@
                         <p>already have an account? <a href="../index.php">Log in</a></p>
                 </form>
             </div>
-        </div>
+                            </div>
 
-        <div class="video_container">
-            <!-- <h1>this is video video conrtainer</h1> -->
-        </div>
+                            <div class="video_container">
+                                <!-- <h1>this is video video conrtainer</h1> -->
+                            </div>
 
        </div>
 

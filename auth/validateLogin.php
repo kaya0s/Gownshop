@@ -179,7 +179,7 @@
             $stmt->close(); 
             $conn->close();
         }
-        public function succesMsg(){
+        public function successMsg(){
             echo "<script>
                              function showGreenAlert(message) {
                                const alert = document.createElement('div');

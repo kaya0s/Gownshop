@@ -11,7 +11,7 @@
         <script src="assets/js/login.js"></script>
     </head>
     <body>
-        <div class="main_container">
+        <div class="main_container"  >
             <div class="login_container" style="background-color:whitesmoke;" >
                 <div class="card">
                     <img src="assets/images/HJ Logo.png" alt="This is a logo"    >
@@ -39,7 +39,7 @@
                             <?php 
                             require_once('auth/validateLogin.php');
                             if (isset($_SESSION['successSignedup'])){
-                                $loginSignup->succesMsg();
+                                $loginSignup->successMsg();
                                 unset($_SESSION['successSignedup']);
                             } ?>
 
@@ -51,6 +51,8 @@
                             <p><a href="auth/forgotpassword/forgot-password.php">Forgot Password?</a></p>
 
                         <p>Don't have an account? <a href="auth/register.php">Sign up</a></p>
+                        
+                       
                     </form>
                 </div>
             </div>
@@ -59,6 +61,7 @@
                 <div class="form-box">
 
             </div>
+            </div>
         </div>
-    </body>
+     </body>
 </html>

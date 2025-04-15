@@ -72,7 +72,7 @@
                 </div>
                 <div class="user-profile" style="margin-left: 50px;">
                     <span>Erwin Lanzaderas</span>
-                    <img src="../assets/images/kayaos.png" alt="user">
+                    <img src="../assets/images/kayaos.jpg" alt="user">
 
                 </div>
             </div>
@@ -155,17 +155,20 @@
                         </tbody>
                         </table>
                     </div>
-                            <hr style="width: 97%;justify-content: center; margin: auto;" >
+                            
                             <br>
                  <!-- REVIEWS -->
-                <div class="row" style="margin: 0px 10px 0px 10px;" >
+                <div class="row" style=" border: 0.5px solid rgba(0, 0, 0, 0.2); width: 97%; margin: 0 auto; border-radius: 5px; padding-top: 10px; " >
                     <h3>Shop Reviews</h3>
                     <div class="mb-3"style="margin: 0px;">
+
                         <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" disabled>
                     </div>
                     <div class="mb-3" style="margin: 0px;">
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>sample message</textarea>
                     </div>
+                    <!-- line break -->
+                    <hr style="width: 98%;justify-content: center; margin: auto; margin-bottom: 10px;" > 
 
                     <div class="mb-3"style="margin: 0px;">
                         <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" disabled>
@@ -192,19 +195,17 @@
 
 
 
-
-
-            <!-- Modal -->
-            <form class="form-group" action="ambot.html" >
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel" >Add admin</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            
+    <!-- Modal -->
+            <form class="form-group" action="add-addmin.php" method="post" >
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel" >Add admin</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    
                                 <label for="firstname">First Name</label>
                                 <input type="text" name="firsname" class="form-control" required>
                                 <label for="lastname">Last Name</label>
@@ -217,6 +218,7 @@
                                 <input type="password" name="password" class="form-control" required>
                                 <label for="repassword">Confirm Password</label>
                                 <input type="repassword" name="password" class="form-control" required>
+
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -226,7 +228,7 @@
                     </div>
                 </div>
            </form>
-        
+
 </body>
 
    

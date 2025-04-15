@@ -8,6 +8,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    
     $email = $_POST['email'];
     
     if(empty($email)){
@@ -41,12 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = $_ENV['EMAIL_ADMIN'];
+            $mail->Username   = $_ENV['EMAIL_ADMIN']; 
             $mail->Password   = $_ENV['EMAIL_PASS'];
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 
-            $mail->setFrom('2301110345@student.buksu.edu.ph', 'HJ Gownshop');
+            $mail->setFrom($_ENV['EMAIL_ADMIN'], 'HJ Gownshop');
             $mail->addAddress($email, 'User');
 
             $mail->isHTML(true);
@@ -117,9 +119,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         
                     <p>Don't have an account? <a href="../register.php">Sign up</a></p>
+                    <p>or</p>
+                <p><a href="auth/register.php">Login</a></p>
                 </form>
                 </
                 </div>
+                
             </div>
         </div>
                 <div class="video_container">
