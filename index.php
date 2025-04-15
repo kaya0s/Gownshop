@@ -1,5 +1,3 @@
-
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +9,9 @@
         <script src="assets/js/login.js"></script>
     </head>
     <body>
+    
+    <?php require('includes/alertmsg.php');?>  
+
         <div class="main_container"  >
             <div class="login_container" style="background-color:whitesmoke;" >
                 <div class="card">
@@ -34,17 +35,9 @@
                             <img src="assets/images/hidden.png" alt="Hide Password" class="password-icon" id="showPassword">
                         </div>
                             <button class="login-btn" type="submit" value="login"  name="login" >Log in</button>
-                            <!-- check if the get log in message is set and display it -->
-                             
-                            <?php 
-                            require_once('auth/validateLogin.php');
-                            if (isset($_SESSION['successSignedup'])){
-                                $loginSignup->successMsg();
-                                unset($_SESSION['successSignedup']);
-                            } ?>
-
-                             <!-- error message if set -->
+                            
                             <p class="errormsg"> <?php
+                            // require_once('auth/validateLogin.php');
                             if(isset($_SESSION['loginmsg']))
                              echo htmlspecialchars($_SESSION['loginmsg']);unset($_SESSION['loginmsg']); ?>
                              </p>

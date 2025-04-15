@@ -30,25 +30,33 @@
 
                 if ($stmt->num_rows > 0) {
                 // Prepare your statement to get both password and usertype
-                $sql = "SELECT password, user_type FROM users WHERE username = ?";
+                $sql = "SELECT user_id,password, user_type FROM users WHERE username = ?";
                 $stmt = mysqli_prepare($conn,$sql);
                 $stmt->bind_param("s", $_POST['username']);
                 $stmt->execute();
+
+                //if theres an error
+                if ($stmt->error) {
+                    die("Error: " . $stmt->error);
+                }
+
                 $stmt->store_result();
                 
                 // Bind both password and usertype from the result
-                $stmt->bind_result($db_password, $usertype);
+                $stmt->bind_result($user_id,$db_password, $usertype);
                 $stmt->fetch();
 
                     // Verify the password
                     if (password_verify($_POST['password'], $db_password)) {
                         session_start();
 
-                        
+                        $_SESSION['user_id'] = $user_id;
                         $_SESSION['username'] = $_POST['username'];
                         $_SESSION['usertype'] = $usertype;
 
+
                         usleep(550000); // Optional delay
+
 
                         // Redirect based on usertype
                         if ($usertype === 'admin') {
@@ -74,7 +82,6 @@
                     header('Location: ../index.php');
                     exit;
                 }
-
                 
                 $stmt->close();
                 $conn->close();
@@ -146,6 +153,9 @@
             $stmt = $conn->prepare("SELECT user_id FROM users WHERE username = ? OR email = ?");
             $stmt->bind_param("ss", $_POST['username'],$_POST['email']);
             $stmt->execute();
+            
+
+
             $stmt->store_result();
             
             if ($stmt->num_rows > 0) {
@@ -164,7 +174,7 @@
             if ($stmt->execute()) {
                 usleep(550000);
                
-                $_SESSION['successSignedup'] ="set";
+                $_SESSION['successmsg'] ="You have successfully signed up! You can now log in.";
                 header('Location:../index.php');
                 
                 exit;
@@ -179,25 +189,7 @@
             $stmt->close(); 
             $conn->close();
         }
-        public function successMsg(){
-            echo "<script>
-                             function showGreenAlert(message) {
-                               const alert = document.createElement('div');
-                               alert.className = 'custom-alert';
-                               alert.innerText = message;
-                               document.body.appendChild(alert);
-                           
-                               // Remove after 3 seconds
-                               setTimeout(() => {
-                                 alert.remove();
-                               }, 5000);
-                             }
-                           
-                             // Example usage
-                             showGreenAlert('successfully created an account ');
-                           </script>
-                             <?php } ?>";
-        }   
+        
     }
 
     $loginSignup = new LoginSignupPage;

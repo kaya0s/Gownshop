@@ -47,7 +47,7 @@
             </li>
             
             <li>
-                <a href="../index.html">
+                <a href="../includes/logout.php">
                     <img src="../assets/images/icons/logout.png" alt="dashboard">
                     <span>Logout</span>
                 </a>
@@ -311,18 +311,13 @@
         
         </div>
 </body>
-<script>
-    const toggleBtn = document.getElementById('toggleSidebar');
-    const sidebar = document.querySelector('.sidebar');
-  
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('active');
-    });
+<!-- date time -->
+<script src="../assets/js/datetime.js" ></script>  
 
-    
-  </script>
 
-<script src="../assets/js/datetime.js" ></script>
+     
+<!-- SIDEBAR HIDE -->
+<script src="../assets/js/sidebar.js"></script>
 
 
 <style>

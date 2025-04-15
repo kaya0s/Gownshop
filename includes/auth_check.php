@@ -1,8 +1,9 @@
+
 <?php
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /hj-gownshop/auth/login.php");
+    header("Location: /hj-gownshop/index.php");
     exit();
 }
 
@@ -13,4 +14,5 @@ function require_role($role) {
         exit();
     }
 }
+require_role($_SESSION['usertype']); // or 'customer' based on your requirement
 ?>

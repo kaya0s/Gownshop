@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +16,31 @@
     
     
 </head>
-</head>
-
 <body>
+
+<?php
+    session_start();
+    if(isset($_SESSION['adminmsg'])){
+        echo "<script>
+                             function showGreenAlert(message) {
+                               const alert = document.createElement('div');
+                               alert.className = 'custom-alert';
+                               alert.innerText = message;
+                               document.body.appendChild(alert);
+                           
+                               // Remove after 3 seconds
+                               setTimeout(() => {
+                                 alert.remove();
+                               }, 1500);
+                             }
+                           
+                             // Example usage
+                             showGreenAlert('".$_SESSION['adminmsg']."');
+                           </script>
+                             <?php } ?>";
+                             unset($_SESSION['adminmsg']);
+    }
+?>
     <div class="dashboard">
         
         <div class="sidebar">
@@ -47,9 +70,9 @@
                         <span>Product</span>
                     </a>
                 </li>
-                
+
                 <li>
-                    <a href="../index.html">
+                    <a href="../includes/logout.php">
                         <img src="../assets/images/icons/logout.png" alt="dashboard">
                         <span>Logout</span>
                     </a>
@@ -196,7 +219,7 @@
 
 
     <!-- Modal -->
-            <form class="form-group" action="add-addmin.php" method="post" >
+            <form class="form-group" action="add-admin.php" method="post" >
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
@@ -207,18 +230,18 @@
                                 <div class="modal-body">
                                     
                                 <label for="firstname">First Name</label>
-                                <input type="text" name="firsname" class="form-control" required>
+                                <input type="text" name="firstname" class="form-control" required>
                                 <label for="lastname">Last Name</label>
                                 <input type="text" name="lastname" class="form-control" required>
                                 <label for="username">Username</label>
                                 <input type="text" name="username" class="form-control" required>
                                 <label for="email">Email</label>
-                                <input type="text" name="email" class="form-control"required >
+                                <input type="email" name="email" class="form-control"required >
                                 <label for="password">Password</label>
                                 <input type="password" name="password" class="form-control" required>
                                 <label for="repassword">Confirm Password</label>
-                                <input type="repassword" name="password" class="form-control" required>
-
+                                <input type="password" name="repassword" class="form-control" required>
+            
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -230,64 +253,15 @@
            </form>
 
 </body>
+<!-- date time -->
+<script src="../assets/js/datetime.js" ></script>  
 
+<!-- TABLE DATA -->
+<script src="../assets/js/tabledata.js"> </script>
+     
+<!-- SIDEBAR HIDE -->
+<script src="../assets/js/sidebar.js"></script>
    
 
-<script>
-    const tableData = {
-      pending: [
-        { name: 'Mark', address: 'Otto', contact: '@mdo', item: 'Gown A', price: '₱1000', release: '2024-04-01', return: '2024-04-05', status: 'Pending' },
-        { name: 'Anna', address: 'Dela Cruz', contact: '@anna', item: 'Dress B', price: '₱1500', release: '2024-04-02', return: '2024-04-06', status: 'Pending' },
-      ],
-      booked: [
-        { name: 'Jhon', address: 'Smith', contact: '@jsmith', item: 'Suit X', price: '₱2000', release: '2024-04-03', return: '2024-04-07', status: 'Booked' },
-      ],
-      unreturned: [
-        { name: 'Ella', address: 'Baylon', contact: '@ella', item: 'Gown C', price: '₱1800', release: '2024-03-30', return: '---', status: 'Unreturned' },
-      ],
-    };
-    
-    function loadTable(status) {
-      const tbody = document.getElementById('table-body');
-      tbody.innerHTML = ''; // Clear table
-    
-      const data = tableData[status] || [];
-      data.forEach((row, index) => {
-        tbody.innerHTML += `
-          <tr>
-            <td>${index + 1}</td>
-            <td>${row.name}</td>
-            <td>${row.address}</td>
-            <td>${row.contact}</td>
-            <td>${row.item}</td>
-            <td>${row.price}</td>
-            <td>${row.release}</td>
-            <td>${row.return}</td>
-            <td>${row.status}</td>
-          </tr>
-        `;
-      });
-    
-      // Optional: update button styling to show active
-      document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-    }
-    
-    // Load "pending" by default
-    window.onload = () => loadTable('pending');
-    </script>
-<script>
-    const toggleBtn = document.getElementById('toggleSidebar');
-    const sidebar = document.querySelector('.sidebar');
-  
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('active');
-    });
-  </script>
-
-
-<!-- date time -->
-<script src="../assets/js/datetime.js" ></script>
-  
 
 </html>
