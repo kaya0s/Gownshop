@@ -92,15 +92,7 @@ require_once('add-gown.php');
             <div class="content" >
                 
                     <div class="row">
-                        <?php
-                        $result = mysqli_query($conn, "SELECT * FROM gowns");
-                        $totalGowns = mysqli_num_rows($result);
-                        $availableGowns = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM gowns WHERE available = 1"));
-                        $unavailableGowns = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM gowns WHERE available IS NULL"));
-                        
-                        
-                        ?>
-                        
+                       <?php include('gown-statistics.php') ?> 
                         <!-- total gownss -->
                             <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);margin: 10px; margin-top: 0px;">
                                 <div class="d-flex align-items-center">
