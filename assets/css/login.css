@@ -42,10 +42,10 @@ html, body {
     box-sizing: border-box;
 }
 
-/* For screens 768px and smaller - tablets and mobile */
 @media (max-width: 768px) {
-    .main_container {
-        justify-content: center; /* Center the remaining content */
+    body
+    {
+        overflow-y: auto; /* Allow vertical scrolling */
     }
     h1{
         text-align: center;
@@ -57,20 +57,28 @@ html, body {
     }
     
     .login_container {
-        width: 100%; /* Take full width */
+        width: 100vw; /* Take full width */
         padding: 20px; /* Add some padding */
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
     }
     
     .card {
         width: 80%; /* Make card slightly wider on mobile */
         max-width: 400px; /* But not too wide */
     }
+    .logo{
+        width: 180px; /* Slightly smaller logo */
+    }
+    
+    
 }
 
 /* For screens 480px and smaller - mobile phones */
 @media (max-width: 480px) {
-    body{
-        height: 100vh;
+    body
+    {
+        overflow-y: auto; /* Allow vertical scrolling */
     }
     .card {
         width: 90%; /* Use more screen width */
@@ -78,7 +86,7 @@ html, body {
     }
     
     img {
-        width: 250px; /* Slightly smaller logo */
+        width: 150px; /* Slightly smaller logo */
     }
     
     h1 {

@@ -30,9 +30,9 @@
 
                 if ($stmt->num_rows > 0) {
                 // Prepare your statement to get both password and usertype
-                $sql = "SELECT user_id,password, user_type FROM users WHERE username = ?";
+                $sql = "SELECT firstname,lastname,id,password, user_type FROM users WHERE username = ? OR email = ?";
                 $stmt = mysqli_prepare($conn,$sql);
-                $stmt->bind_param("s", $_POST['username']);
+                $stmt->bind_param("ss", $_POST['username'],$_POST['username']);
                 $stmt->execute();
 
                 //if theres an error
@@ -43,14 +43,19 @@
                 $stmt->store_result();
                 
                 // Bind both password and usertype from the result
-                $stmt->bind_result($user_id,$db_password, $usertype);
+                $stmt->bind_result($firstname,$lastname,$id,$db_password, $usertype);
                 $stmt->fetch();
 
                     // Verify the password
                     if (password_verify($_POST['password'], $db_password)) {
                         session_start();
 
-                        $_SESSION['user_id'] = $user_id;
+                        // getting full name
+                        $fullname = $firstname . ' ' . $lastname;
+                        $_SESSION['fullname'] = $fullname;
+
+                        $_SESSION['successmsg'] = "Login successfully!";
+                        $_SESSION['id'] = $id;
                         $_SESSION['username'] = $_POST['username'];
                         $_SESSION['usertype'] = $usertype;
 
@@ -61,12 +66,8 @@
                         // Redirect based on usertype
                         if ($usertype === 'admin') {
                             header('Location: ../admin/dashboard.php');
-                        } else if ($usertype === 'customer') {
+                        } else{
                             header('Location: ../customer/customer.php');
-                        } else {
-                            // Fallback if usertype is something unexpected
-                            $_SESSION['loginmsg'] = "Unknown user type";
-                            header('Location: ../index.php');
                         }
                         exit;
                     } else {
@@ -134,23 +135,15 @@
                 header('Location: register.php');
                 exit;
             }
-            elseif (empty($_POST['address'])) {
-                usleep(250000); // 250000 microseconds = 0.5 seconds
-                $_SESSION['signupmsg'] = "Please enter address";
-                header('Location: register.php');
-                exit;   
-            }
             elseif (empty($_POST['password'])) {
                 usleep(250000); // 250000 microseconds = 0.5 seconds
                 $_SESSION['signupmsg'] = 'Please enter password';
                 header('Location: register.php');
                 exit;
             }
-        
             require_once('../includes/connection_db.php');
-
             // Check if username already exists 
-            $stmt = $conn->prepare("SELECT user_id FROM users WHERE username = ? OR email = ?");
+            $stmt = $conn->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
             $stmt->bind_param("ss", $_POST['username'],$_POST['email']);
             $stmt->execute();
             
@@ -168,8 +161,8 @@
             $stmt->close();
         
             $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, username, email, password,contact_number,address) VALUES (?, ?, ?, ?, ?,?,?)");
-            $stmt->bind_param("sssssss", $_POST['firstname'], $_POST['lastname'], $_POST['username'], $_POST['email'],$hashed_password,$_POST['phone'],$_POST['address']);
+            $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, username, email, password,contact_number) VALUES (?, ?, ?, ?, ?,?)");
+            $stmt->bind_param("ssssss", $_POST['firstname'], $_POST['lastname'], $_POST['username'], $_POST['email'],$hashed_password,$_POST['phone']);
             
             if ($stmt->execute()) {
                 usleep(550000);

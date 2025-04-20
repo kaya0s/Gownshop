@@ -23,7 +23,7 @@ body {
     transform: translateX(-50%);
     background-color:whitesmoke;
     color:#155E64;
-    padding: 15px 30px;
+    padding: 15px 20px;
     border: 1px solid rgb(11, 102, 90);
     border-radius: 5px;
     font-size: 16px;
@@ -38,7 +38,7 @@ body {
     transform: translateX(-50%);
     background-color: whitesmoke;
     color: #9e1c1c;
-    padding: 15px 30px;
+    padding: 15px 20px;
     border: 1px solid rgb(11, 102, 90);
     border-radius: 5px;
     font-size: 16px;
@@ -146,19 +146,23 @@ body {
     cursor: pointer;
   }
 
-/* Main Content Layout */
+/* Main Content Layout */   
 .main-content {
     display: flex;
     flex: 1;
     flex-direction: column;
     width: 80%;
     padding: 0px;
+    height: 100%;
     
 }
 .content{
     overflow-y: auto; /* Enables vertical scroll if needed */
-    height: 84vh;
+    height: 80vh;
     overflow-x:hidden;
+    padding: 20px;
+    padding-right: 10px;
+
 }
 
 /* Topbar */
@@ -183,7 +187,7 @@ body {
 
 span {
     font-size: larger;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .topbar .user-profile {
@@ -193,9 +197,15 @@ span {
 
 
 .topbar .user-profile img {
-    margin-left: 30px;
     border-radius: 50px;
     height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    margin-left: 30px;
+    
 }
 
 /* Product Cards */
@@ -273,6 +283,7 @@ span {
 
     .sidebar {
         width: 100%;
+        height: 100vh;
         height: auto;
     }
 
@@ -338,6 +349,23 @@ span {
     
 }
 @media (max-width: 768px) {
+    
+    .gown-card .row {
+        flex-direction: column;
+    }
+
+    .gown-card .col-md-7,
+    .gown-card .col-md-5 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    }
+
+    .gown-card img {
+    border-radius: 0 !important;
+    width: 100%;
+    height: auto;
+    }
+
     .sidebar {
       position: fixed;
       top: 0;
@@ -356,4 +384,36 @@ span {
     
   }
 
+  .card-box {
+    width: 25%;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);
+    margin: 10px;
+    margin-top: 0;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 0.25rem; /* equivalent to Bootstrap's mb-1 */
+  }
+  
+  .card-number {
+    font-size: 64px;
+    font-weight: bold;
+    color: #186864;
+  }
+  
+  .card-img {
+    width: 100px;
+  }
+  
 
+.footer {
+    position: absolute; 
+    bottom: 0;
+     width: 90%;
+      text-align: center;   padding: 10px; background-color: #186864;
+
+    }

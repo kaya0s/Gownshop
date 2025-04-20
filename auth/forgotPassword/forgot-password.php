@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="main_container">
         <div class="login_container">
             <div class="card">
-                <img src="../../assets/images/HJ Logo.png" alt="This is a logo">
+                <img class=".logo" src="../../assets/images/HJ Logo.png" alt="This is a logo">
 
                 <form action="forgot-password.php" method="POST">
                     <h1>Welcome to HJ Gowns</h1>
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         
                     <p>Don't have an account? <a href="../register.php">Sign up</a></p>
                     <p>or</p>
-                <p><a href="auth/register.php">Login</a></p>
+                <p><a href="../../index.php">Login</a></p>
                 </form>
                 </
                 </div>

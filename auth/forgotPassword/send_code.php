@@ -27,6 +27,7 @@
 <html>
     <head>
             <title>HJ Gownshop | Create an account</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="icon" type="image/png" href="../assets/images/HJ Logo.png">
             <link rel="stylesheet" href="../../assets/css/login.css">
             <script src="../assets/js/login.js"></script>

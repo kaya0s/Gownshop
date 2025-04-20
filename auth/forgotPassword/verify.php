@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>HJ Gownshop | Verify</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../assets/css/style.css">
         <script src="../../assets/js/login.js"></script>
         <link rel="icon" type="image/png" href="../../assets/images/HJ Logo.png">

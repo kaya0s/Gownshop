@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+require('add-admin.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,71 +16,51 @@
     <!-- Bootstrap Bundle includes Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    
-    
 </head>
 <body>
-
-<?php
-    session_start();
-    if(isset($_SESSION['adminmsg'])){
-        echo "<script>
-                             function showGreenAlert(message) {
-                               const alert = document.createElement('div');
-                               alert.className = 'custom-alert';
-                               alert.innerText = message;
-                               document.body.appendChild(alert);
-                           
-                               // Remove after 3 seconds
-                               setTimeout(() => {
-                                 alert.remove();
-                               }, 1500);
-                             }
-                           
-                             // Example usage
-                             showGreenAlert('".$_SESSION['adminmsg']."');
-                           </script>
-                             <?php } ?>";
-                             unset($_SESSION['adminmsg']);
-    }
-?>
+     <?php require_once('../includes/alertmsg.php');?> <!--alert message -->
     <div class="dashboard">
-        
         <div class="sidebar">
             <div class="heads">
                 <img style="border-radius: 50%;box-shadow: 0px 4px 8px rgb(0, 0, 0,0.3);" src="../assets/images/HJ Logo.png" alt="logo">
             </div>
             <ul class="menu">
+                <!-- ACTIVE BUTTON -->
                 <li style=" background-color: rgb(24, 24, 24); border-radius: 5px;">
-                    <a href="index.html" class="active">
+                    <a href="dashboard.php" class="active">
                         <img src="../assets/images/icons/dashB.png" alt="dashboard">
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li >
-                    <!-- Button trigger modal -->
+                    <!-- ADD ADMIN BUTTON  MODAL -->
                     <button type="button" class="btn d-flex align-items-center p-2 rounded" 
                             data-bs-toggle="modal" data-bs-target="#exampleModal"
                              style="width: 100%;" >
                         <img src="../assets/images/icons/admin.png" alt="dashboard" style="height: 30px;">
-                        <span style="margin-left: 20px;font-size: 21.6px; ">Add admin</span>
+                        <span style="margin-left: 20px;font-size: larger; ">Add admin</span>
                     </button>
 
                 </li>
+                <!-- gowns BUTTON IN SIDEBAR -->
                 <li>
-                    <a href="products.php">
+                    <a href="gowns.php">
                         <img src="../assets/images/icons/product.png" alt="dashboard">
-                        <span>Product</span>
+                        <span>Gowns</span>
                     </a>
                 </li>
 
+                    <!-- LOGOUT BUTTON IN SIDEBAR -->
                 <li>
-                    <a href="../includes/logout.php">
+                    <a href="../auth/logout.php">
                         <img src="../assets/images/icons/logout.png" alt="dashboard">
                         <span>Logout</span>
                     </a>
                 </li>
             </ul>
+            <div class="footer" >
+                        HJ gownshop ©copyright 2025 
+            </div>
         </div>
 
 
@@ -87,14 +70,15 @@
                     <button id="toggleSidebar" class="toggle-btn">☰</button>
                     <div class="greetAdmin" style="margin-left: 10px;" >
                         <h2>Welcome, Admin!</h2>  
-                        <h6 id="dateTimeDisplay" style="margin-left: 5px;"></h6>   
+                        <h6 id="dateTimeDisplay"></h6>   
                         </div>
-                    
+
 
                         
                 </div>
                 <div class="user-profile" style="margin-left: 50px;">
-                    <span>Erwin Lanzaderas</span>
+                    <span>admin </span>
+                    </span>
                     <img src="../assets/images/kayaos.jpg" alt="user">
 
                 </div>
@@ -104,14 +88,12 @@
             <div class="content">
 
 
-              
-                
-                <div class="row" style="margin-left: 10px;" >
+                <div class="row"    >
 
                     <!-- Button trigger modal -->
                
                     <!-- STATISTICS -->
-                    <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);margin: 10px; ">
+                    <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);margin: 10px; margin-top:0px">
                         <div class="d-flex align-items-center">
                             <!-- Left Column: Text and Number -->
                             <div class="flex-grow-1">
@@ -123,11 +105,11 @@
                         </div>
                         </div>
 
-                        <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);margin: 10px; ">
+                        <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);margin: 10px;margin-top:0px ">
                             <div class="d-flex align-items-center">
                                 <!-- Left Column: Text and Number -->
                                 <div class="flex-grow-1">
-                                <p class="mb-1" style="font-size: 18px; color: #555;">Pending bookings</p>
+                                <p class="mb-1" style="font-size: 18px; color: #555;">Total customers</p>
                                 <h1 style="font-size: 64px; font-weight: bold; color: #186864;">9</h1>
                                 </div>
                                 <!-- Right Column: Image -->
@@ -135,7 +117,7 @@
                         </div>
                         </div>
 
-                        <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);margin: 10px; ">
+                        <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);margin: 10px;margin-top:0px ">
                             <div class="d-flex align-items-center">
                                 <!-- Left Column: Text and Number -->
                                 <div class="flex-grow-1">
@@ -148,7 +130,7 @@
                         </div>
                             
 
-
+                        
                         <div class="d-flex gap-2 mt-4 mb-3"style="margin-left: 0px; margin-right: 20px;">
                             <button class="btn btn-outline-success active" onclick="loadTable('pending')">Pending</button>
                             <button class="btn btn-outline-primary" onclick="loadTable('booked')">Booked</button>
@@ -158,7 +140,7 @@
                 </div>
 
                 <!-- TABLE -->
-                    <div class="table-responsive" style="margin-left: 20px; margin-right: 20px;">
+                    <div class="table-responsive" >
                         <table class="table table-bordered table-striped text-center">
                         <thead class="table-light">
                             <tr>
@@ -181,7 +163,7 @@
                             
                             <br>
                  <!-- REVIEWS -->
-                <div class="row" style=" border: 0.5px solid rgba(0, 0, 0, 0.2); width: 97%; margin: 0 auto; border-radius: 5px; padding-top: 10px; " >
+                <div class="row" style=" border: 0.5px solid rgba(0, 0, 0, 0.2);  margin: 0; border-radius: 5px; padding-top: 10px; " >
                     <h3>Shop Reviews</h3>
                     <div class="mb-3"style="margin: 0px;">
 
@@ -193,64 +175,15 @@
                     <!-- line break -->
                     <hr style="width: 98%;justify-content: center; margin: auto; margin-bottom: 10px;" > 
 
-                    <div class="mb-3"style="margin: 0px;">
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" disabled>
-                    </div>
-                    <div class="mb-3" style="margin: 0px;">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>sample message</textarea>
-                    </div>
                 </div>
-
-            
-                    <!-- copyright -->
-                <div class="footer" style="position: static; padding: 20px;text-align: center;align-items: center;">
-                    HJ gownshop ©copyright 2025 
-
-                </div>
-            
-
+                    
+                
         </div>
 
-    
-    </div>
-    </div>
-
-
-
-
-    <!-- Modal -->
-            <form class="form-group" action="add-admin.php" method="post" >
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel" >Add admin</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    
-                                <label for="firstname">First Name</label>
-                                <input type="text" name="firstname" class="form-control" required>
-                                <label for="lastname">Last Name</label>
-                                <input type="text" name="lastname" class="form-control" required>
-                                <label for="username">Username</label>
-                                <input type="text" name="username" class="form-control" required>
-                                <label for="email">Email</label>
-                                <input type="email" name="email" class="form-control"required >
-                                <label for="password">Password</label>
-                                <input type="password" name="password" class="form-control" required>
-                                <label for="repassword">Confirm Password</label>
-                                <input type="password" name="repassword" class="form-control" required>
+        <!-- copyright footer -->
             
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <input type="submit" value="ADD" name="add-admin" class="btn btn-primary" style="background-color: #186864; border-color: #186864;">
-                        </div>
-                    </div>
-                    </div>
-                </div>
-           </form>
+    </div>
+    </div>
 
 </body>
 <!-- date time -->

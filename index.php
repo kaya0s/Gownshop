@@ -1,21 +1,25 @@
+<?PHP
+    
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>HJ Gownshop</title>
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="assets/js/login.js"></script>
         <link rel="icon" type="image/png" href="assets/images/HJ Logo.png">
         <link rel="stylesheet" href="assets/css/login.css">
         <script src="assets/js/login.js"></script>
     </head>
     <body>
-    
-    <?php require('includes/alertmsg.php');?>  
-
-        <div class="main_container"  >
+        <?php  include('includes/alertmsg.php');?>
+        <div class="main_container">
             <div class="login_container" style="background-color:whitesmoke;" >
                 <div class="card">
-                    <img src="assets/images/HJ Logo.png" alt="This is a logo"    >
+                    <img src="assets/images/HJ Logo.png" class="logo" alt="This is a logo"    >
 
                     <form action="auth/validateLogin.php" method="POST">
                         <h1>Welcome to HJ Gowns</h1>
@@ -37,10 +41,12 @@
                             <button class="login-btn" type="submit" value="login"  name="login" >Log in</button>
                             
                             <p class="errormsg"> <?php
-                            // require_once('auth/validateLogin.php');
+                            
+                            //  require_once('auth/validateLogin.php');
                             if(isset($_SESSION['loginmsg']))
                              echo htmlspecialchars($_SESSION['loginmsg']);unset($_SESSION['loginmsg']); ?>
                              </p>
+                             
                             <p><a href="auth/forgotpassword/forgot-password.php">Forgot Password?</a></p>
 
                         <p>Don't have an account? <a href="auth/register.php">Sign up</a></p>
@@ -51,6 +57,7 @@
             </div>
             <div class="video_container">
                 <!-- <h1>This is video container</h1> -->
+                 
                 <div class="form-box">
 
             </div>
