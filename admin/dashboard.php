@@ -77,9 +77,12 @@ require('add-admin.php');
                         
                 </div>
                 <div class="user-profile" style="margin-left: 50px;">
-                    <span>admin </span>
+                    <span><?php if(isset($_SESSION['fullname'])){
+                        echo $_SESSION['fullname']; 
+                    }
+                    ?> </span>
                     </span>
-                    <img src="../assets/images/kayaos.jpg" alt="user">
+                    <img src="../assets/images/kayaos.jpg" alt="user">  
 
                 </div>
             </div>

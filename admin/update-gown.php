@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update-gown'])) {
         WHERE id = '$gown_id'";
     }else{
         $sql = "UPDATE gowns 
-        SET name = '$name', color = '$color', size = '$sizeString', price = '$price', image = '$filename', category_id = '$category_ID',available = NULL 
+        SET name = '$name', color = '$color', size = '$sizeString', price = '$price', image = '$filename', category_id = '$category_ID',available = 1 
         WHERE id = '$gown_id'";
     }
 

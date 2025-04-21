@@ -188,9 +188,6 @@ function openUpdateModal(gownId) {
     document.getElementById('textGownId').textContent = gown.id;
     document.getElementById('updateGownName').value = gown.name;
     
-
-    
-    // Add more if needed: size, color, category...
 }
 
 
