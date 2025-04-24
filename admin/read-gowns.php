@@ -1,12 +1,6 @@
 <?php include('update-gown.php')  ?>
 <?php require_once('../includes/alertmsg.php');?>
-<div class="row d-flex flex-wrap justify-content-start">
-    <div class="d-flex gap-2 mt-4 mb-3" style="margin-left: 0px; margin-right: 20px;">
-        <button class="btn btn-outline-success active" id="all-gowns-btn" onclick="filterGowns('all')">All Gowns</button>
-        <button class="btn btn-outline-primary" id="available-btn" onclick="filterGowns('available')">Available</button>
-        <button class="btn btn-outline-warning" id="unavailable-btn" onclick="filterGowns('unavailable')">Unavailable</button>
-    </div>
-</div>
+
 
 <div class="table-responsive">
     <table class="table table-bordered table-striped text-center">
@@ -32,7 +26,7 @@
 
 <?php
 // Fetch gowns from the database
-$query = "SELECT g.*, c.name as category_name FROM gowns g LEFT JOIN categories c ON g.category_id = c.id";
+$query = "SELECT g.*, c.name as category_name FROM gowns g LEFT JOIN categories c ON g.category_id = c.id ORDER BY g.id DESC";
 $result = mysqli_query($conn, $query);
 $gownData = [];
 if(mysqli_num_rows($result) > 0) {

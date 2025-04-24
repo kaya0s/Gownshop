@@ -3,7 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['add-gown'])) {
     include '../includes/connection_db.php';
 
     $category_ID = $_POST['category'];
-    $name = $_POST['name'];
+    $name = $_POST['name']; 
     $color = $_POST['gown-color'];
     $price = $_POST['price'];
 

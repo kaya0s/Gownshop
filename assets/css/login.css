@@ -1,8 +1,15 @@
+@font-face {
+    font-family: 'PF Bague Sans Pro Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url('PFBagueSansPro-Reg-subset.woff') format('woff');
+    }  
+    
 html, body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'PF Bague Sans Pro Regular';
     box-sizing: border-box;
     overflow-x: hidden;
     color: rgb(10, 10, 10);

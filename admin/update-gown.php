@@ -52,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update-gown'])) {
         WHERE id = '$gown_id'";
     }
 
-
     if (move_uploaded_file($image['tmp_name'], $uploadPath)) {
 
         if (mysqli_query($conn, $sql)) {

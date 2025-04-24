@@ -1,13 +1,11 @@
-/* Resetting some basic styles */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
     background-color: whitesmoke;
     overflow: hidden; /* Disables scrolling */
     height: 100vh; /* Ensures the body takes full viewport height */ /* Ensures full width */

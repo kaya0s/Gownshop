@@ -66,10 +66,13 @@
                         // Redirect based on usertype
                         if ($usertype === 'admin') {
                             header('Location: ../admin/dashboard.php');
+                            $_SESSION['successmsg'] = "You have successfully logged in";
+                            exit;
                         } else{
-                            header('Location: ../customer/customer.php');
+                            header('Location: ../customer/dashboard.php');
+                            $_SESSION['successmsg'] = "You have successfully logged in";
+                            exit;
                         }
-                        exit;
                     } else {
                         session_start();
                         usleep(250000);

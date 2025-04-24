@@ -78,7 +78,9 @@ require('add-admin.php');
                 </div>
                 <div class="user-profile" style="margin-left: 50px;">
                     <span><?php if(isset($_SESSION['fullname'])){
-                        echo $_SESSION['fullname']; 
+                        echo $_SESSION['fullname'];     
+                    }else{
+                        echo "Admin"; 
                     }
                     ?> </span>
                     </span>

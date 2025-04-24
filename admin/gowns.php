@@ -3,6 +3,7 @@ session_start();
 require('../includes/connection_db.php');
 require('add-admin.php');
 require_once('add-gown.php');
+require('print-gowns.php');
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +55,7 @@ require_once('add-gown.php');
             </li>
             
             <li>
-                <a href="../index.html">
+                <a href="../index.php">
                     <img src="../assets/images/icons/logout.png" alt="dashboard">
                     <span>Logout</span>
                 </a>
@@ -82,8 +83,14 @@ require_once('add-gown.php');
                         
                 </div>
                 <div class="user-profile" style="margin-left: 50px;">
-                    <span>Erwin Lanzaderas</span>
-                    <img src="icon.png" alt="user">
+                    <span><?php if(isset($_SESSION['fullname'])){
+                        echo $_SESSION['fullname'];     
+                    }else{
+                        echo "Admin"; 
+                    }
+                    ?> </span>
+                    </span>
+                    <img src="../assets/images/kayaos.jpg" alt="user">  
 
                 </div>
             </div>
@@ -138,10 +145,25 @@ require_once('add-gown.php');
                     
                     </div>
 
+                    <!-- GOWNS STATUS BUTTON -->
+                    <div class="row d-flex flex-wrap justify-content-start">
+                    <div class="d-flex gap-2 mt-4 mb-3" style="margin-left: 0px; margin-right: 20px;">
+                        <button class="btn btn-outline-success active" id="all-gowns-btn" onclick="filterGowns('all')"> <i class="bi bi-grid-fill me-1"></i> All Gowns</button>
+                        <button class="btn btn-outline-success" id="available-btn" onclick="filterGowns('available')"><i class="bi bi-check-circle-fill me-1"></i>Available</button>
+                        <button class="btn btn-outline-danger" id="unavailable-btn" onclick="filterGowns('unavailable')"><i class="bi bi-x-circle-fill me-1"></i>Unavailable</button>
+                        <form method="POST" action="print-gowns.php" class="d-flex">
+                            <button type="submit" name="print" class="btn btn-primary w-100">
+                                <i class="bi bi-printer-fill me-2"></i> Print Products
+                            </button>
+                        </form>
+
+                    </div>
+                   
+                </div>
+                
              <!-- gowns -->   
              <?php include('read-gowns.php'); ?>
              <?php include('update-gown.php'); ?>
-
                           
              </div>
 
