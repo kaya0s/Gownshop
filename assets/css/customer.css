@@ -233,10 +233,10 @@ body{
 
   .size-input {
     width: 100px;         /* Adjust as needed */
-    padding: 4px 8px;     /* Less padding = smaller input */
-    font-size: 14px; 
+    padding: 10px;     /* Less padding = smaller input */
+    font-size: 18px; 
     font-family: 'Raleway';
-    font-weight: bolder;     /* Smaller text */
+    font-weight:500;     /* Smaller text */
   }
 
  
@@ -292,6 +292,12 @@ body{
     .img-description-container {
         flex-direction: column;
       }
+}
+@media (max-width: 420px) {
+    .company-name{
+        display: none;
+    }
+
 }
     .hero-section {
         height: 90vh;

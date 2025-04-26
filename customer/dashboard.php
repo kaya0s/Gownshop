@@ -20,6 +20,11 @@
         
         
     </head>
+    <style>
+html {
+  scroll-behavior: smooth;
+}
+</style>
     <body>
         <?php
           include_once('../includes/alertmsg.php');
@@ -31,7 +36,7 @@
             <!-- Logo and Brand Name -->
             <a class="navbar-brand text-center "  href="#">
                 <img style="height: 80px;" src="../assets/images/HJ Logo.png" alt="HJ Logo" class="logo-img">
-                <h3 style="font-weight:400;" >HJ GOWNSHOP</h3>
+                <h3 class="company-name" style="font-weight:400;" >HJ GOWNSHOP</h3>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -41,7 +46,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">WEDDING DRESSES</a>
+                        <a class="nav-link" href="#gown-section">WEDDING DRESSES</a>
                     </li>
                     <!-- New Gown Categories Dropdown -->
                     <li class="nav-item dropdown">
@@ -80,20 +85,21 @@
         <section class="hero-section">
             <!-- Due to platform limitations, a placeholder video is used. In a real implementation, replace with your actual wedding dress video -->
             <video class="video-background" autoplay loop muted playsinline>
-                <source src="../assets/videos/gown.mp4" type="video/mp4">
+                <source src="../asset/videos/gown.mp4" type="video/mp4">
                 <!-- For demonstration purposes only, as we can't include external videos -->
             </video>
             <div class="video-overlay"></div>
             <div class="hero-content">
                 <h1>ENCHANTING ELEGANCE</h1>
                 <p>REDEFINING GLAMOUR, ONE GOWN AT A TIME</p>
-                <button class="btn btn-discover">EXPLORE OUR LATEST COLLECTION</button>
+               <a href="#gown-section"><button class="btn btn-discover">EXPLORE OUR LATEST COLLECTION</button></a> 
             </div>
         </section>
 
         <!-- Wedding Gowns Section -->
-        <section class="gown-section">
-                <div class="container" style="display:flex; width: 100%; flex-direction: column;" >
+        <section class="gown-section " id="gown-section" style="scroll-margin-top: 80px;">
+            
+                <div class="container"  style="display:flex; width: 100%; flex-direction: column;" >
                         <div class="section-title" >
                             <h2>OUR WEDDING GOWNS</h2>
                             <p>Explore our exquisite collection of handcrafted bridal dresses</p>
@@ -105,16 +111,23 @@
                             $result=mysqli_query($conn,"Select * from gowns where available = 1 order by id desc;");
                             if(mysqli_num_rows($result ) > 0){
                                 
-                                while($row = mysqli_fetch_assoc($result)){
-                                    ?>
-                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center" onclick="openDrawer()">
-                                        <img src="../uploads/gowns/<?php echo $row['image']; ?>" class="img-thumbnail custom-image" alt="This is the Gown Image"  style="width: 100%; height: 645px; object-fit: cover;">
-                                        <h5 class="mt-2 text-start" style="color:rgba(0, 0, 0, 0.7); font-weight: bold;" ><?php echo $row['name']; ?></h5>
-                                    </div>
+                    while($row = mysqli_fetch_assoc($result)){
+                        $sizes = explode(',',$row['size']);
+                        ?>
+                    
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center" onclick='openDrawer(
+                                            <?php echo json_encode($row["name"]); ?>,
+                                        <?php echo json_encode($row["description"]); ?>,
+                                        <?php echo json_encode($row["color"]); ?>,
+                                        <?php echo json_encode($sizes); ?>
+                                                        )'>
+                            <img src="../uploads/gowns/<?php echo $row['image']; ?>" class="img-thumbnail custom-image" alt="This is the Gown Image"  style="width: 100%; height: 645px; object-fit: cover;">
+                            <h5 class="mt-2 text-start" style="color:rgba(0, 0, 0, 0.7); font-weight: bold;" ><?php echo $row['name']; ?></h5>
+                        </div>
 
-                                     <?php
-                                }
-                                
+                        <?php
+                    }
+                    
 
                             }else{
                                 echo "No Gowns Found";
@@ -130,11 +143,11 @@
         <!-- Drawer Overlay view gown -->
         <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
         
-
         <!-- Drawer Panel  view gown panel-->
         <div class="drawer p-4" id="drawerPanel">
             <div class="d-flex justify-content-between align-items-center mb-3" style="padding-left: 3.5rem;">
-                <h4 class="mb-0">Gown Name</h4>
+                <h4 class="mb-0" id="gownName"></h4>
+                <!-- GOWNNAME -->
                 <button class="btn btn-outline-secondary" onclick="closeDrawer()"><i class="bi-x-lg"></i></button>
             </div>
             <div class="img-description-container" sty>
@@ -146,8 +159,8 @@
                         <div class="mb-3 mt-3 info-container">
                             <!-- gown description here -->
                             <div class="m-b-32 description-box">
-                                <p style="margin: 0px;">
-                                    Sophisticated A-line wedding gown fashioned from mikado. Featuring a boned corset with a heart-shaped neckline, zip-up closure on the back, and a lush voluminous skirt with a midi train. 
+                                <p id="description" style="margin: 0px;">
+                                   <!-- description -->
                                 </p>
                             </div>
 
@@ -155,27 +168,27 @@
                             <div class="size-container">
                                 <div class="size">
                                     <h6 class="title-size">Bust</h6>
-                                    <input class="size-input" type="text" placeholder="size" disabled>
+                                    <input class="size-input" id="size-bust" type="text" placeholder="size" disabled>
                                 </div>
                                 <div class="size">
                                     <h6 class="title-size">Waist</h6>
-                                    <input  class="size-input" type="text" placeholder="size" disabled>
+                                    <input class="size-input"  id="size-waist" type="text"  placeholder="size" disabled>
                                 </div>
                                 <div class="size">
                                     <h6 class="title-size">Hips</h6>
-                                    <input  class="size-input" type="text" placeholder="size" disabled>
+                                    <input  class="size-input" id="size-hips" type="text"  placeholder="size" disabled>
                                 </div>
                                 <div class="size">
                                     <h6 class="title-size">Length</h6>
-                                    <input  class="size-input" type="text" placeholder="size" disabled>
+                                    <input class="size-input"  id="size-length" type="text"  placeholder="size" disabled>
                                 </div>
                                 
                             </div> 
                             
                            <div style="width: 100%; border-top: 3px solid #186864; margin-top: 10px; font-family: 'Raleway'cursive   ;">
                            <div class="size" style="margin-top: 10px;">
-                                    <h6 class="title-size">Color</h6>
-                                    <input style="width:fit-content" class="size-input" type="text" placeholder="Golden White" disabled>
+                                    <h6 class="title-size"  >Color</h6>
+                                    <input style="width:fit-content" id="gown-color" class="size-input" type="text" placeholder="Golden White" disabled>
                                 </div>
                            </div>
 
@@ -241,9 +254,17 @@
             const drawerPanel = document.getElementById('drawerPanel');
             const drawerOverlay = document.getElementById('drawerOverlay');
 
-            function openDrawer() {
+            function openDrawer(name,description,color,sizes) {
+            
             drawerPanel.classList.add('active');
             drawerOverlay.classList.add('active');
+            document.getElementById("gownName").innerText = name;
+            document.getElementById("description").innerText = description;
+            document.getElementById("gown-color").value = color;
+            document.getElementById("size-bust").value = sizes[0];
+            document.getElementById("size-waist").value = sizes[1];
+            document.getElementById("size-hips").value = sizes[2];
+            document.getElementById("size-length").value = sizes[3];
             }
 
             function closeDrawer() {
