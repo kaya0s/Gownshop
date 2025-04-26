@@ -1,0 +1,30 @@
+.success-alert{
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color:whitesmoke;
+    color:#041623;
+    padding: 15px 30px;
+    border: 1px solid #041623;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeOut 1.2s ease-in-out 1.2s forwards;
+}
+.error-alert{
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: whitesmoke;
+    color: #9e1c1c;
+    padding: 15px 30px;
+    border: 1px solid #041623;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeOut 1.2s ease-in-out 1.2s forwards;
+}

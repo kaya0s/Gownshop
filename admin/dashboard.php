@@ -147,7 +147,7 @@ require('add-admin.php');
                 <!-- TABLE -->
                     <div class="table-responsive" >
                         <table class="table table-bordered table-striped text-center">
-                        <thead class="table-light">
+                        <thead class="table-dark" >
                             <tr>
                             <th>#</th>
                             <th>Name</th>

@@ -65,12 +65,16 @@
 
                         // Redirect based on usertype
                         if ($usertype === 'admin') {
-                            header('Location: ../admin/dashboard.php');
+                            usleep(550000); // Optional delay
                             $_SESSION['successmsg'] = "You have successfully logged in";
+                            header('Location: ../admin/dashboard.php');
+                           
                             exit;
                         } else{
-                            header('Location: ../customer/dashboard.php');
+                            usleep(550000); // Optional delay
                             $_SESSION['successmsg'] = "You have successfully logged in";
+                            header('Location: ../customer/dashboard.php');
+                          
                             exit;
                         }
                     } else {

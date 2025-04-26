@@ -37,8 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['print'])) {
                     <th>Name</th>
                     <th>Category</th>
                     <th>Price</th>
-                    <th>Stock</th>
-                    <th>#</th>
+                    <th>STATUS</th>
+                    
                 </tr>
             </thead>
             <tbody>';
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['print'])) {
                     <td>' . htmlspecialchars($product['name']) . '</td>
                     <td>' . htmlspecialchars($product['category_id']) . '</td>
                     <td>' . htmlspecialchars($product['price']) . '</td>
-                    <td>' . htmlspecialchars($product['color']) . '</td>
+                    <td>' . htmlspecialchars($product['available']) . '</td>
                 </tr>';
     }
 
