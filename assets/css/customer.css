@@ -7,7 +7,7 @@
 body{
     padding-top: 80px; /* Add padding to body to account for fixed navbar */
     background-color: #f8f9fa;
-    font-family: 'Aboreto', cursive;;
+    font-family: 'Aboreto', cursive;
 }
 .navbar {
     

@@ -9,10 +9,13 @@ require('add-admin.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D A S H B O A R D</title>
+    
     <link rel="stylesheet" href="../assets/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/uiverse.css">
-    <link rel="icon" type="image/png" href="../images/logo.png">
+    <link rel="icon" href="../assets/images/HJ Logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    
     <!-- Bootstrap Bundle includes Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -103,10 +106,10 @@ require('add-admin.php');
                             <!-- Left Column: Text and Number -->
                             <div class="flex-grow-1">
                             <p class="mb-1" style="font-size: 18px; color: #555;">Total Sales</p>
-                            <h1 style="font-size: 64px; font-weight: bold; color: #186864;">9</h1>
+                            <h1 style="font-size: 64px; font-weight: bold; color: #041623;">9</h1>
                             </div>
                             <!-- Right Column: Image -->
-                            <img src="../assets/images/sales.png" alt="Gown icon" style="width: 70px;">
+                            <img src="../assets/images/icons/sales-icon.png" alt="Gown icon">
                         </div>
                         </div>
 
@@ -115,10 +118,10 @@ require('add-admin.php');
                                 <!-- Left Column: Text and Number -->
                                 <div class="flex-grow-1">
                                 <p class="mb-1" style="font-size: 18px; color: #555;">Total customers</p>
-                                <h1 style="font-size: 64px; font-weight: bold; color: #186864;">9</h1>
+                                <h1 style="font-size: 64px; font-weight: bold; color:#041623;">9</h1>
                                 </div>
                                 <!-- Right Column: Image -->
-                                <img src="../assets/images/wallet.png" style="width: 60px;">
+                                <img src="../assets/images/icons/customer-icon.png" alt="Gown icon" >
                         </div>
                         </div>
 
@@ -130,7 +133,7 @@ require('add-admin.php');
                                 <h1 style="font-size: 64px; font-weight: bold; color:rgb(146, 42, 42);">9</h1>
                                 </div>
                                 <!-- Right Column: Image -->
-                                <img src="../assets/images/rejected.png" alt="Gown icon" style="width: 60px;">
+                                <img src="../assets/images/icons/unreturned-icon.png" alt="Gown icon" style="width: 60px;">
                         </div>
                         </div>
                             

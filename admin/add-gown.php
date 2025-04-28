@@ -2,6 +2,7 @@
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['add-gown'])) {
     include '../includes/connection_db.php';
 
+    $description = trim($_POST['description']); 
     $category_ID = $_POST['category'];
     $name = $_POST['name']; 
     $color = $_POST['gown-color'];
@@ -25,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['add-gown'])) {
     }
 
     if (move_uploaded_file($image['tmp_name'], $uploadPath)) {
-        $sql = "INSERT INTO gowns (name, color, size, price, image, category_id) 
-                VALUES ('$name', '$color', '$sizeString', '$price', '$filename', '$category_ID')";
+        $sql = "INSERT INTO gowns (name, color, size, price, image, category_id,description) 
+                VALUES ('$name', '$color', '$sizeString', '$price', '$filename', '$category_ID','$description')";
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['successmsg'] = "Gown added successfully!";
@@ -80,6 +81,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['add-gown'])) {
                     <label class="form-label">Gown Name</label>
                     <input type="text" name="name" class="form-control" required maxlength="100">
                 </div>
+                <!-- GOWN DESCRIPTION -->
+                <div class="mb-3">
+                    <label for="gown-description" class="form-label">Description</label>
+                    <textarea class="form-control" id="gown-description" name="description" rows="2" placeholder="Input Description here..."></textarea>
+                </div>
         
                 <!-- Gown Color -->
                 <div class="mb-3">
@@ -124,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['add-gown'])) {
 
                 <!-- Image -->
                 <div class="mb-3">
-                    <label class="form-label">Upload Image</label>
+                    <label class="form-label">Upload Gown Image</label>
                     <input type="file" name="image" class="form-control" accept="image/jpeg,image/png,image/gif,image/webp" required>
                     <small class="text-muted">Max size: 2MB (JPEG, PNG, GIF, WebP)</small>
                 </div>

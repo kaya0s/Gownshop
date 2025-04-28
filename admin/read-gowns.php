@@ -10,7 +10,7 @@
                 <th>Gown ID</th>
                 <th>Name</th>
                 <th>Size</th>
-                <th>Color</th>
+                <th>Color</th>      
                 <th>Category</th>
                 <th>Price</th>
                 <th>Status</th>

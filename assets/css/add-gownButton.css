@@ -3,26 +3,25 @@
     height: 80px;
     border-radius: 10px;
     margin: 40px 10px 0px 1%;
-    border-color: #186864;
-    background-color: #186864;
+    border-color: #041623;
+    background-color: #041623;
     color: white;
     transition: all 0.3s ease;
 }
 
 .add-gown-btn:hover {
-    background-color: #155d5b;
-    border-color: #155d5b;
+    background-color: #212b5a;
+    border-color: #212b5a;
     color: #ffffff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
 }
 
 
 .add-gown-btn:active,
 .add-gown-btn:focus:active {
 background-color: whitesmoke;
-border-color: #186864;
-color: #155d5b;
+border-color: #152322;
+color: #152322;
 box-shadow: none;
 outline: none;
 }

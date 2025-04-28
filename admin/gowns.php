@@ -13,12 +13,13 @@ require('print-gowns.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D A S H B O A R D</title>
     <link rel="stylesheet" href="../assets/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/uiverse.css">
-    <link rel="icon" type="image/png" href="../images/logo.png">
     <link rel="stylesheet" href="../assets/css/add-gownButton.css">
+    <link rel="icon" href="../assets/images/HJ Logo.png">
     <!-- Bootstrap Bundle includes Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 </head>
 
@@ -48,7 +49,7 @@ require('print-gowns.php');
                     </button>
 
             <li>
-                <a  style=" background-color: rgb(24, 24, 24); border-radius: 5px;"href="gowns.php">
+                <a  style=" background-color: rgb(93, 92, 92); border-radius: 5px;"href="gowns.php">
                     <img src="../assets/images/icons/product.png" alt="dashboard">
                     <span>Gowns</span>
                 </a>
@@ -101,27 +102,27 @@ require('print-gowns.php');
                     <div class="row">
                        <?php include('gown-statistics.php') ?> 
                         <!-- total gownss -->
-                            <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);margin: 10px; margin-top: 0px;">
+                            <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 23, 23, 0.25);margin: 10px; margin-top: 0px;">
                                 <div class="d-flex align-items-center">
                                     <!-- Left Column: Text and Number -->
                                     <div class="flex-grow-1">
                                     <p class="mb-1" style="font-size: 18px; color: #555;">Total Gowns</p>
-                                    <h1 style="font-size: 64px; font-weight: bold; color: #186864;"><?php echo $totalGowns  ?></h1>
+                                    <h1 style="font-size: 64px; font-weight: bold; color: #041623;"><?php echo $totalGowns  ?></h1>
                                     </div>
                                     <!-- Right Column: Image -->
-                                    <img src="icon.png" alt="Gown icon" style="width: 100px;">
+                                    <img src="../assets/images/icons/sales-icon.png" alt="Gown icon">
                                 </div>
                             </div>
 
-                        <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);margin: 10px;margin-top: 0px; ">
+                        <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 23, 23, 0.25);margin: 10px;margin-top: 0px; ">
                             <div class="d-flex align-items-center">
                                 <!-- Left Column: Text and Number -->
                                 <div class="flex-grow-1">
                                 <p class="mb-1" style="font-size: 18px; color: #555;">Available Gowns</p>
-                                <h1 style="font-size: 64px; font-weight: bold; color: #186864;"><?php echo $availableGowns  ?></h1>
+                                <h1 style="font-size: 64px; font-weight: bold;color: #198754;"><?php echo $availableGowns  ?></h1>
                                 </div>
                                 <!-- Right Column: Image -->
-                                <img src="icon.png" alt="Gown icon" style="width: 100px;">
+                                <img src="../assets/images/icons/check-icon.png" alt="">
                             </div>
                         </div>
 
@@ -130,16 +131,16 @@ require('print-gowns.php');
                                 <!-- Left Column: Text and Number -->
                                 <div class="flex-grow-1">
                                 <p class="mb-1" style="font-size: 18px; color: #555;">Unavailable Gowns</p>
-                                <h1 style="font-size: 64px; font-weight: bold; color: #186864;"><?php echo $unavailableGowns  ?></h1>
+                                <h1 style="font-size: 64px; font-weight: bold; color: #DC3545;"><?php echo $unavailableGowns  ?></h1>
                                 </div>
                                 <!-- Right Column: Image -->
-                                <img src="icon.png" alt="Gown icon" style="width: 100px;">
+                                <img src="../assets/images/icons/not-avail-icon.png" alt="Unreturned icon">
                             </div>
                         </div>    
-                        <button type="button" class="btn btn-outline-primary d-flex flex-column justify-content-center align-items-center shadow-sm add-gown-btn"
+                        <button style="height: 60px;" type="button" class="btn btn-outline-primary d-flex flex-column justify-content-center align-items-center shadow-sm add-gown-btn"
                                 data-bs-toggle="modal" data-bs-target="#addGownModal"
                                 title="Add gowns">
-                            <img src="../assets/images/kayaos.jpg" width="50px" alt="">
+                            <img src="../assets/images/icons/add-icon.png" style="width: 30px; height: 30px;" alt="">
                             <span style="font-size: 15px; font-weight: 300;">Add Gown</span>
                         </button>
                     
