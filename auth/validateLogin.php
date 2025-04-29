@@ -54,12 +54,12 @@
                         $fullname = $firstname . ' ' . $lastname;
                         $_SESSION['fullname'] = $fullname;
 
-                        $_SESSION['successmsg'] = "Login successfully!";
-                        $_SESSION['id'] = $id;
+                        
+                        $_SESSION['user_id'] = $id;
                         $_SESSION['username'] = $_POST['username'];
                         $_SESSION['usertype'] = $usertype;
 
-
+                        $_SESSION['successmsg'] = "Login successfully!";
                         usleep(550000); // Optional delay
 
 

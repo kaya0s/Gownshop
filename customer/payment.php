@@ -1,9 +1,18 @@
 <?php 
  session_start();
- 
 //  DATABASE CONNECTION
  include('../includes/connection_db.php');
- 
+
+
+    $result = mysqli_query($conn,"SELECT * FROM GOWNS WHERE ID = ".$_POST['gown_id']." ");
+    $gown=mysqli_fetch_assoc($result);
+
+
+    $result = mysqli_query($conn,"SELECT * FROM users WHERE ID = ".$_SESSION['user_id']." ");
+    $user=mysqli_fetch_assoc($result);
+    
+    
+
     // HEADER AND NAVIGATION
  require_once('../includes/customer/header.php');
 ?>
@@ -24,29 +33,27 @@
             <h2>Order Details </h2>
             <div class="row mt-3">
                 <div class="col-md-6">
-                <p><strong>Order Date:</strong> April 20, 2025</p>
-                <p><strong>ESTIMATED GOWN ARRIVE:</strong>TOMMORROW</p>
+                <p><strong>Order Date:</strong> April 28, 2025</p>
+                <p><strong>ESTIMATED GOWN TO BE DELIVERED:</strong>TOMMORROW</p>
                 <p><strong>RETURN DATE:</strong>3 DAYS AFTER RENTED / April 20, 2025</p>
                 <p><strong>Payment Method:</strong> PAYPAL</p>
                 </div>
                 <div class="col-md-6">
-                <p><strong>Shipping To:</strong><br>Jane Doe<br>123 Bridal Ave<br>Los Angeles, CA</p>
+                <p><strong>Shipping To:</strong><br><?php echo $_SESSION['fullname']; ?><br><?php echo $user['address'] ?></p>
                 </div>
             </div>
 
-            <h5 class="mt-4">Items Ordered</h5>
+            <h5 class="mt-4">Items Ordered :</h5>
             <ul class="list-group list-group-flush mb-3">
                 <li class="list-group-item d-flex justify-content-between">
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
-                <span>Silk Mermaid Gown x1</span>
-                <span>$400.00</span>
+                <span><h3><?php echo $gown['name'] ?></h3></span>
+                <span><h3><strong>Total: ₱<?php echo $gown['price'] ?></strong></h3></span>
                 </li>
             </ul>
-            <div class="text-end mb-3">
-                <strong>Total: $899.00</strong>
+            <div class="text-end mb-3">    
             </div>
-
             <div class="d-flex justify-content-end gap-">
                 <!-- PayPal button container -->
                 <div id="paypal-button-container"></div>
