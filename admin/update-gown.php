@@ -91,27 +91,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update-gown'])) {
                 <!-- Gown Category -->  
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <select class="form-select" name="category" id="category" required>
-                        <option value="" disabled selected>Select category</option>
-                        <option value="1">Evening Gown</option>
-                        <option value="2">Wedding Gown</option>
-                        <option value="3">Debut Gown</option>
-                        <option value="4">Ball Gown</option>
-                        <option value="5">Cocktail Dress</option>
+                    <select class="form-select" name="category" id="'updateGownCategory" required>
+                        <option value="Evening Gown">Evening Gown</option>
+                        <option value="Wedding Gown">Wedding Gown</option>
+                        <option value="Debut Gown">Debut Gown</option>
+                        <option value="Ball Gown">Ball Gown</option>
+                        <option value="Cocktail Dress">Cocktail Dress</option>
                     </select>
                 </div>
 
                 <!-- Gown Name -->
                 <div class="mb-3">
                     <label class="form-label">Gown Name</label>
-                    <input type="text" name="name" class="form-control" required maxlength="100">
+                    <input id="updateGownName" type="text" name="name" class="form-control" required maxlength="100">
                 </div>
         
                 <!-- Gown Color -->
                 <div class="mb-3">
                     <label for="gown-color" class="form-label">Color</label>
-                    <select class="form-select" id="gown-color" name="gown-color" required>
-                        <option value="" disabled selected>Select a color</option>
+                    <select class="form-select" id="updateGownColor" name="gown-color" required>
+    
                         <option value="red">Red</option>
                         <option value="blue">Blue</option>
                         <option value="gold">Gold</option>
@@ -125,16 +124,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update-gown'])) {
                     <label class="form-label">Size (inch)</label>
                     <div class="row">
                         <div class="col-md-3">
-                            <input type="number" step="0.1" name="bust" class="form-control" placeholder="Bust" min="0" required>
+                            <input id="bust"  type="number" step="0.1" name="bust" class="form-control" placeholder="Bust" min="0" required>
                         </div>
                         <div class="col-md-3">
-                            <input type="number" step="0.1" name="waist" class="form-control" placeholder="Waist" min="0" required>
+                            <input  id="waist" type="number" step="0.1" name="waist" class="form-control" placeholder="Waist" min="0" required>
                         </div>
                         <div class="col-md-3">
-                            <input type="number" step="0.1" name="hips" class="form-control" placeholder="Hips" min="0" required>
+                            <input id="hips" type="number" step="0.1" name="hips" class="form-control" placeholder="Hips" min="0" required>
                         </div>
                         <div class="col-md-3">
-                            <input type="number" step="0.1" name="length" class="form-control" placeholder="Length" min="0" required>
+                            <input id="length" type="number" step="0.1" name="length" class="form-control" placeholder="Length" min="0" required>
                         </div>
                     </div>
                 </div>
@@ -144,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update-gown'])) {
                     <label class="form-label">Price</label>
                     <div class="input-group">
                         <span class="input-group-text">₱</span>
-                        <input type="number" name="price" class="form-control" step="0.01" min="0" required>
+                        <input id="updateGownPrice" type="number" name="price" class="form-control" step="0.01" min="0" required>
                     </div>
                 </div>
                 
@@ -152,9 +151,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update-gown'])) {
                 <div class="mb-3">
                     <label for="gown-status" class="form-label">Status</label>
                     <select class="form-select" id="gown-status" name="gown-status" required>
-                        <option value="" disabled selected>Select status</option>
-                        <option value="available">Available</option>
-                        <option value="unavailable">Unavailable</option>
+                        <option value="1">Available</option>
+                        <option value="0">Unavailable</option>
                     </select>
                 </div>
 

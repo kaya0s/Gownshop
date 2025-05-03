@@ -43,14 +43,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['print'])) {
             </thead>
             <tbody>';
 
+
+    
     foreach ($products as $product) {
+        if($product['available'] === "1"){
+            $status = "AVAILABLE";
+        }else{
+            $status = "UNAVAILABLE";
+        }
         $html .= '
                 <tr>
                     <td>' . $count++ . '</td>
                     <td>' . htmlspecialchars($product['name']) . '</td>
                     <td>' . htmlspecialchars($product['category_id']) . '</td>
                     <td>' . htmlspecialchars($product['price']) . '</td>
-                    <td>' . htmlspecialchars($product['available']) . '</td>
+                    <td>' . htmlspecialchars($status) . '</td>
                 </tr>';
     }
 

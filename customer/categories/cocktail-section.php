@@ -35,7 +35,7 @@
                         <?php
                     }
                             }else{
-                                echo '<h4 class="text-center" style="border:1px solid grey;" >No Cocktail Gowns Found.</h4>';
+                                echo '<h4 class="text-center">No Cocktail Gowns Found.</h4>';
                             }
                             ?>   
           

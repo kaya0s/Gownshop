@@ -102,6 +102,8 @@ function renderGownTable(data) {
         const availability = gown.available ? 
             '<span class="badge bg-success">Available</span>' : 
             '<span class="badge bg-danger">Unavailable</span>';
+
+           
         
         // Action buttons
         const actions = `
@@ -181,6 +183,13 @@ function openUpdateModal(gownId) {
     document.getElementById('GownId').value = gown.id;
     document.getElementById('textGownId').textContent = gown.id;
     document.getElementById('updateGownName').value = gown.name;
+    document.getElementById('updateGownColor').value = gown.color;
+    document.getElementById('updateGownPrice').value = gown.price;
+    document.getElementById('gown-status').value = gown.available;
+
+        
+    
+
     
 }
 

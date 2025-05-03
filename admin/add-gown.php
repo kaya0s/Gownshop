@@ -31,6 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['add-gown'])) {
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['successmsg'] = "Gown added successfully!";
+            header('location: gowns.php');
+            
+            exit();
         } else {
             $_SESSION['errormsg'] = "Database error: " . mysqli_error($conn);
         }
@@ -38,8 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['add-gown'])) {
         $_SESSION['errormsg'] = "Failed to upload image.";
     }
 
-    header("Location: " . $_SERVER['HTTP_REFERER']);
-    exit;
 }
 ?>
 

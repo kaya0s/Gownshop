@@ -24,9 +24,10 @@ require('print-gowns.php');
 </head>
 
 <body>
-  <?php require_once('../includes/alertmsg.php');?> <!--alert message -->
+  <?php include('../includes/alertmsg.php');?> <!--alert message -->
   
     <div class="dashboard">
+        
         <!-- SIDEBAR -->
         <div class="sidebar">
         <div class="heads">

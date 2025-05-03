@@ -58,16 +58,31 @@
             </ul>
             <!-- User Info and Search -->
             <div class="navbar-right">
+            
             <div class="search-container">
-                    <input type="text" class="form-control search-input" placeholder="Search...">
-                    <i class="fas fa-search search-icon"></i>
-                </div>
+                <input type="text" class="form-control search-input" placeholder="Search..." id="searchBox">
+                <i class="fas fa-search search-icon" onclick="searchAndScroll()"></i>
+            </div>
+
+ 
+            <div class="user-container" onclick="toggleDropdown()">
                 <div class="user-info">
-                    <span style="padding-right:10px;">KAYAOS</span>
+                    <span style="padding-right:10px;">customer</span>
                     <i class="fas fa-user user-icon" style="padding-right:10px;"></i> 
                 </div>
-                
-            </div>
+                <div class="dropdown" id="userDropdown">
+                    <a href="#">Sukid Points: 100</a>
+                    <a href="#">Logout</a>
+                </div>
+            </div> 
+            
+            
+            
+
+
+                </div>
         </div>
-   
     </nav>
+
+    <!-- TOGGLE USER DROP DOWN -->
+    <script src="../assets/js/toggleDropdown.js" ></script>
