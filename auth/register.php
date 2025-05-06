@@ -19,35 +19,40 @@
                     <h1 style="color: black; margin-bottom: -10px;">Welcome to HJ Gowns</h1>
                     <h3 style="color: black; text-align: center; ">Create an Account</h3>
                     <div class="input-group" >
-                        <img src="../assets/images/user (1).png" alt="Username icon" class="input-icon">
+                        <img src="../assets/images/icons/user_icon.png" alt="Username icon" class="input-icon">
                         <input type="text" placeholder="firstname" name="firstname" >
                     </div>
                     <div class="input-group" >
-                            <img src="../assets/images/user (1).png" alt="Username icon" class="input-icon">
+                            <img src="../assets/images/icons/user_icon.png" alt="Username icon" class="input-icon">
                             <input type="text" placeholder="lastname" name="lastname" >
                     </div>  
                     <div class="input-group" >
-                        <img src="../assets/images/user (1).png" alt="Username icon" class="input-icon">
+                        <img src="../assets/images/icons/user_icon.png" alt="Username icon" class="input-icon">
                         <input type="text" placeholder="Username" name="username" >
                     </div>
                     <div class="input-group" >
-                        <img src="../assets/images/user (1).png" alt="Username icon" class="input-icon">
+                        <img src="../assets/images/icons/email.png" alt="Username icon" class="input-icon">
                         <input type="text" placeholder="Email" name="email" >
                     </div>  
+
+                    <div class="input-group" >
+                         <img src="../assets/images/icons/user_icon.png" alt="Username icon" class="input-icon">
+                        <input type="text" placeholder="Address" name="address" >
+                    </div> 
                     
                     <div class="input-group" >
-                         <img src="../assets/images/user (1).png" alt="Username icon" class="input-icon">
+                         <img src="../assets/images/icons/phone.png" alt="Username icon" class="input-icon">
                         <input type="text" placeholder="Phone Number " name="phone" >
                     </div>     
                         <div class="input-group">
-                            <img src="../assets/images/padlock.png" alt="Password icon" class="input-icon">
+                            <img src="../assets/images/icons/password_icon.png" alt="Password icon" class="input-icon">
                             <input type="password" placeholder="Password" name="password" id="passwordInput">
-                            <img src="../assets/images/HJ Logo.png" alt="Show Password" class="password-icon" id="hidePassword">
-                            <img src="../assets/images/HJ Logo.png" alt="Hide Password" class="password-icon" id="showPassword">
+                            <img src="../assets/images/icons/pass_visible.png" alt="Show Password" class="password-icon" id="hidePassword">
+                            <img src="../assets/images/icons/pass_invisible.png" alt="Hide Password" class="password-icon" id="showPassword">
                         </div>
                         <button class="login-btn" type="submit" value="signup"  name="signup" >Sign up</button>
                         
-                            <p class="errormsg"> <?php
+                            <p style="font-size:smaller"  class="errormsg"> <?php
                             if(isset($_SESSION['signupmsg']))
                              echo htmlspecialchars($_SESSION['signupmsg']); unset($_SESSION['signupmsg']); ?>
                            

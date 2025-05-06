@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="text" placeholder="Enter your Email" name="email">
                     </div>
                         <button class="login-btn" type="submit" value="login"  name="login" >Continue</button>
-                            <div class="errormsg" >
+                            <div style="font-size:smaller" class="errormsg" >
                             <?php if(isset($_SESSION['error'])){ ?> 
                         
                         <?php echo $_SESSION['error']; unset($_SESSION['error']); }?>

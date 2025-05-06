@@ -27,20 +27,21 @@ session_start();
 
                         <!-- email input -->
                         <div class="input-group">
-                            <img src="assets/images/user (1).png" alt="Username icon" class="input-icon">
+                            <img src="assets/images/icons/user_icon.png" alt="Username icon" class="input-icon">
                             <input type="text" placeholder="username or email" name="username">
                         </div>
 
                         <!-- password input -->
                         <div class="input-group">
-                            <img src="assets/images/padlock.png" alt="Password icon" class="input-icon">
+                            <img src="assets/images/icons/password_icon.png" alt="Password icon" class="input-icon">
                             <input type="password" placeholder="Password" name="password" id="passwordInput">
-                            <img src="assets/images/eye.png" alt="Show Password" class="password-icon" id="hidePassword">
-                            <img src="assets/images/hidden.png" alt="Hide Password" class="password-icon" id="showPassword">
+                            <img src="assets/images/icons/pass_visible.png" alt="Show Password" class="password-icon" id="hidePassword">
+                            <img src="assets/images/icons/pass_invisible.png" alt="Hide Password" class="password-icon" id="showPassword">
                         </div>
+
                             <button class="login-btn" type="submit" value="login"  name="login" >Log in</button>
                             
-                            <p class="errormsg"> <?php
+                            <p style="font-size:smaller" class="errormsg"> <?php
                             
                             //  require_once('auth/validateLogin.php');
                             if(isset($_SESSION['loginmsg']))

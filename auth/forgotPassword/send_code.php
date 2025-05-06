@@ -15,8 +15,11 @@
             $row = mysqli_fetch_assoc($result);
             if($code == $row['reset_code']){
                 header("location: new-password.php");
+                exit();
             }else{
                 $_SESSION['error'] = "you entered a wrong code";
+                header("location: send_code.php");
+                exit();
             }
 
         }

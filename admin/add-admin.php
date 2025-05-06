@@ -1,7 +1,6 @@
 <?php
     
     if($_SERVER['REQUEST_METHOD']== "POST" && isset($_POST['add-admin'])){
-        session_start();
         require_once '../includes/connection_db.php';
 
         $firstname= $_POST['firstname'];
@@ -15,7 +14,7 @@
 
         if($password != $repassword){
             $_SESSION['adminmsg'] = "password dont match";
-            echo "<script>window.history.back();</script>";
+            echo "<script>window.reload();";
             exit();
         }
         $password = password_hash($password,PASSWORD_DEFAULT);

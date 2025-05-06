@@ -11,9 +11,8 @@ function require_role($role) {
 
     $stmt = $conn->prepare("SELECT user_type FROM users WHERE username = ?");
     if (!$stmt) {
-        die("Database error: " . $conn->error);
+        die("Database error: " . $conn->error());
     }
-
     $stmt->bind_param("i", $_SESSION['username']);
     $stmt->execute();
     $stmt->bind_result($usertype);

@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update-gown'])) {
     }
 
     header("Location: " . $_SERVER['HTTP_REFERER']);
-    exit;
+    exit();
 }
 ?>
                 
@@ -92,11 +92,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update-gown'])) {
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
                     <select class="form-select" name="category" id="'updateGownCategory" required>
-                        <option value="Evening Gown">Evening Gown</option>
-                        <option value="Wedding Gown">Wedding Gown</option>
-                        <option value="Debut Gown">Debut Gown</option>
-                        <option value="Ball Gown">Ball Gown</option>
-                        <option value="Cocktail Dress">Cocktail Dress</option>
+                        <option value="1">Evening Gown</option>
+                        <option value="2">Wedding Gown</option>
+                        <option value="3">Debut Gown</option>
+                        <option value="4">Ball Gown</option>
+                        <option value="5">Cocktail Dress</option>
                     </select>
                 </div>
 

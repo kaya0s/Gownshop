@@ -4,6 +4,13 @@ require('../includes/connection_db.php');
 require('add-admin.php');
 require_once('add-gown.php');
 require('print-gowns.php');
+
+//GOWN STATISTICS
+$result = mysqli_query($conn, "SELECT * FROM gowns");
+$totalGowns = mysqli_num_rows($result);
+$availableGowns = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM gowns WHERE available = 1"));
+$unavailableGowns = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM gowns WHERE available IS NULL"));  
+                        
 ?>
 
 <!DOCTYPE html>
@@ -49,15 +56,22 @@ require('print-gowns.php');
                         <span style="margin-left: 20px;font-size: larger; ">Add admin</span>
                     </button>
 
-            <li>
-                <a  style=" background-color: rgb(93, 92, 92); border-radius: 5px;"href="gowns.php">
+            <li   style=" background-color: rgb(93, 92, 92); border-radius: 5px;">
+                <a class="active" href="gowns.php">
                     <img src="../assets/images/icons/product.png" alt="dashboard">
                     <span>Gowns</span>
                 </a>
             </li>
+            <!-- REVIEWS  -->
+            <li>
+                <a href="reviews.php">
+                    <img src="../assets/images/icons/reviews_icon.png" alt="review icon">
+                    <span>Reviews</span>
+                </a>
+            </li>
             
             <li>
-                <a href="../index.php">
+                <a href="../auth/logout.php">
                     <img src="../assets/images/icons/logout.png" alt="dashboard">
                     <span>Logout</span>
                 </a>
@@ -70,8 +84,6 @@ require('print-gowns.php');
 
         <!-- main-content -->
         <div class="main-content">
-
-
             <!-- Topbar -->
             <div class="topbar">
                 <div class="dashGreet">
@@ -79,11 +91,9 @@ require('print-gowns.php');
                     <div class="greetAdmin" style="margin-left: 10px;" >
                         <h2>Welcome, Admin!</h2>  
                         <h6 id="dateTimeDisplay"></h6>   
-                        </div>
-                    
-
-                        
+                        </div>    
                 </div>
+
                 <div class="user-profile" style="margin-left: 50px;">
                     <span><?php if(isset($_SESSION['fullname'])){
                         echo $_SESSION['fullname'];     
@@ -101,7 +111,8 @@ require('print-gowns.php');
             <div class="content" >
                 
                     <div class="row">
-                       <?php include('gown-statistics.php') ?> 
+                        
+                        
                         <!-- total gownss -->
                             <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 23, 23, 0.25);margin: 10px; margin-top: 0px;">
                                 <div class="d-flex align-items-center">
@@ -111,7 +122,7 @@ require('print-gowns.php');
                                     <h1 style="font-size: 64px; font-weight: bold; color: #041623;"><?php echo $totalGowns  ?></h1>
                                     </div>
                                     <!-- Right Column: Image -->
-                                    <img src="../assets/images/icons/sales-icon.png" alt="Gown icon">
+                                    <img src="../assets/images/icons/total gowns.png" alt="Gown icon" style="width: 60px; height: 60px;">
                                 </div>
                             </div>
 
@@ -123,7 +134,7 @@ require('print-gowns.php');
                                 <h1 style="font-size: 64px; font-weight: bold;color: #198754;"><?php echo $availableGowns  ?></h1>
                                 </div>
                                 <!-- Right Column: Image -->
-                                <img src="../assets/images/icons/check-icon.png" alt="">
+                                <img src="../assets/images/icons/available_gown.png" alt="Available Gown Icon" style="width: 60px; height: 60px;">
                             </div>
                         </div>
 
@@ -135,7 +146,7 @@ require('print-gowns.php');
                                 <h1 style="font-size: 64px; font-weight: bold; color: #DC3545;"><?php echo $unavailableGowns  ?></h1>
                                 </div>
                                 <!-- Right Column: Image -->
-                                <img src="../assets/images/icons/not-avail-icon.png" alt="Unreturned icon">
+                                <img src="../assets/images/icons/unavailable_gown.png" style="width: 60px; height: 60px;">
                             </div>
                         </div>    
                         <button style="height: 60px;" type="button" class="btn btn-outline-primary d-flex flex-column justify-content-center align-items-center shadow-sm add-gown-btn"

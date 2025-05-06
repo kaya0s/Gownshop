@@ -1,10 +1,8 @@
 <?php include('update-gown.php')  ?>
-<?php require_once('../includes/alertmsg.php');?>
-
 
 <div class="table-responsive">
     <table class="table table-bordered table-striped text-center">
-        <thead class="table-light">
+        <thead class="table-dark">
             <tr>
                 <th>Image</th>
                 <th>Gown ID</th>
@@ -186,13 +184,8 @@ function openUpdateModal(gownId) {
     document.getElementById('updateGownColor').value = gown.color;
     document.getElementById('updateGownPrice').value = gown.price;
     document.getElementById('gown-status').value = gown.available;
-
-        
-    
-
     
 }
-
 
 function confirmDelete(id) {
     if (confirm('Are you sure you want to delete this gown?')) {

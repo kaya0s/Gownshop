@@ -10,7 +10,7 @@
             // Remove after 3 seconds
             setTimeout(() => {
               alert.remove();
-            }, 1500);
+            }, 2300);
           }
         
           // Example usage

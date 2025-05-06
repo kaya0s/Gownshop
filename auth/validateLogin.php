@@ -30,7 +30,7 @@
 
                 if ($stmt->num_rows > 0) {
                 // Prepare your statement to get both password and usertype
-                $sql = "SELECT firstname,lastname,id,password, user_type FROM users WHERE username = ? OR email = ?";
+                $sql = "SELECT firstname,lastname,id,password,user_type,suki_points,address FROM users WHERE username = ? OR email = ?";
                 $stmt = mysqli_prepare($conn,$sql);
                 $stmt->bind_param("ss", $_POST['username'],$_POST['username']);
                 $stmt->execute();
@@ -43,21 +43,23 @@
                 $stmt->store_result();
                 
                 // Bind both password and usertype from the result
-                $stmt->bind_result($firstname,$lastname,$id,$db_password, $usertype);
+                $stmt->bind_result($firstname,$lastname,$id,$db_password, $usertype,$suki_points,$address);
                 $stmt->fetch();
 
                     // Verify the password
                     if (password_verify($_POST['password'], $db_password)) {
                         session_start();
 
-                        // getting full name
+                        // getting user information
                         $fullname = $firstname . ' ' . $lastname;
-                        $_SESSION['fullname'] = $fullname;
-
-                        
+                        $_SESSION['firstname'] = $firstname;
+                        $_SESSION['fullname'] = $fullname;  
+                        $_SESSION['address']  = $address;
+                        $_SESSION['suki_points'] = $suki_points;
                         $_SESSION['user_id'] = $id;
                         $_SESSION['username'] = $_POST['username'];
                         $_SESSION['usertype'] = $usertype;
+                        
 
                         $_SESSION['successmsg'] = "Login successfully!";
                         usleep(550000); // Optional delay
@@ -73,7 +75,7 @@
                         } else{
                             usleep(550000); // Optional delay
                             $_SESSION['successmsg'] = "You have successfully logged in";
-                            header('Location: ../customer/dashboard.php');
+                            header('Location: ../customer/homepage.php');
                           
                             exit;
                         }
@@ -99,11 +101,13 @@
 
         // for sign up method
         public function signup() {
+
             session_start();
 
             $firstname =trim($_POST['firstname']);
             $lastname = $_POST['lastname'];
             $username =$_POST['username'];
+            $address = $_POST['address'];
             
             if (empty($firstname)&&empty($lastname)&&empty($lastname)&&empty($username)&&empty($_POST['email'])&&empty($_POST['address'])&&empty($_POST['phone'])&&empty($_POST['password']) ) {
                 usleep(250000); // 250000 microseconds = 0.5 seconds
@@ -116,7 +120,16 @@
                 $_SESSION['signupmsg'] = "Please enter firstname";
                 header('Location:register.php');
                 exit;
-            } elseif (empty($lastname)) {
+                
+            }
+            elseif (empty($address)) {
+                usleep(250000); // 250000 microseconds = 0.5 seconds
+                $_SESSION['signupmsg'] = "Please enter address";
+                header('Location:register.php');
+                exit;
+                
+            }
+            elseif (empty($lastname)) {
                 usleep(250000); // 250000 microseconds = 0.5 seconds
                 $_SESSION['signupmsg'] = "Please enter lastname";
                 header('Location: register.php');
@@ -168,8 +181,8 @@
             $stmt->close();
         
             $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, username, email, password,contact_number) VALUES (?, ?, ?, ?, ?,?)");
-            $stmt->bind_param("ssssss", $_POST['firstname'], $_POST['lastname'], $_POST['username'], $_POST['email'],$hashed_password,$_POST['phone']);
+            $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, username, email, password,contact_number,address) VALUES (?, ?, ?, ?, ?,?,?)");
+            $stmt->bind_param("sssssss", $_POST['firstname'], $_POST['lastname'], $_POST['username'], $_POST['email'],$hashed_password,$_POST['phone'],$address);
             
             if ($stmt->execute()) {
                 usleep(550000);

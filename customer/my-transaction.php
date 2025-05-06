@@ -1,6 +1,4 @@
 <?php 
- session_start();
- 
 //  DATABASE CONNECTION
  include('../includes/connection_db.php');
  
@@ -16,43 +14,62 @@
 
              <!-- Suki Points Section -->
             <div class="alert alert-info text-center mb-5" style="font-family: 'Raleway';">
-                <h5>You have <strong>120 Suki Points</strong> 💎</h5>
+                
+                <h5>You have <strong><?php echo $_SESSION['suki_points'];?> </strong> Suki Points💎</h5>
                 <p>You can use your points to get discounts on future rentals!</p>
-                <button class="btn btn-outline-primary">Use Points</button>
+                <button class="btn btn-outline-info"><a style="color:green; text-decoration: none; " href="homepage.php#gown-latest">Rent Now</a></button>
             </div>
 
             <div class="table-responsive bg-white rounded shadow-sm" style="font-family: 'Raleway'cursive;">
             <table class="table table-striped" style="font-family: 'Raleway'cursive;">
                 <thead class="table-dark">
                 <tr>
-                    <th>Order Id</th>
-                    <th>Date</th>
-                    <th>Items</th>
+                    <th>Transaction Id</th>
+                    <th>Gown Name</th>
+                    <th>Date Rented</th>
                     <th>Total</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>Payment Method</th>
+                    <th>Status</th> 
+
                 </tr>
                 </thead>
                 <tbody>
+                
+                   <!-- FETCH TRANSCATIONS  -->
+                <?php 
+                    $stmt = $conn->prepare("SELECT gowns.name, transactions.*
+                    FROM gowns
+                    LEFT JOIN transactions ON gowns.id = transactions.gown_id 
+                    WHERE transactions.user_id = ?");
+                        $stmt->bind_param("i", $_SESSION['user_id']);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                    while($row = mysqli_fetch_assoc($result)){
+                ?>
                 <tr>
-                    <td>#123456</td>
-                    <td>April 20, 2025</td>
-                    <td>2 Gowns</td>
-                    <td>$899.00</td>
-                    <td><span class="badge bg-success">Delivered</span></td>
-                    <td>
-                    <button class="btn btn-primary btn-sm">View</button>
-                    <button class="btn btn-secondary btn-sm">Invoice</button>
+                    <?php
+                    
+                    ?>
+                    <td><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['date_booked']; ?></td>
+                    <td><?php echo $row['total_price']; ?></td>
+                    <td><?php echo $row['payment_method']; ?></td>
+                    <td>        
+                    <span class="badge bg-success"><?php echo $row['status']; ?></span>
+                
                     </td>
+                
                 </tr>
+                <?php } ?>
                 <!-- More rows here -->
                 </tbody>
             </table>
-            </div>
+            </div>  
 
             <!-- Detailed Order Section -->
             <div class="bg-white rounded shadow-sm p-4 mt-5" style="font-family: 'Raleway'cursive;">
-            <h2>Order Details - #123456</h2>
+            <h2> Order Details - #123456</h2>
             <div class="row mt-3">
                 <div class="col-md-6">
                 <p><strong>Order Date:</strong> April 20, 2025</p>
