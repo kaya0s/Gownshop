@@ -127,34 +127,42 @@ require('../includes/connection_db.php');
                             <img src="../assets/images/icons/sales-icon.png" alt="Gown icon">
                         </div>
                         </div>
+                        <?php 
+                    $query = mysqli_query($conn, "SELECT COUNT(status) AS total_returned  FROM transactions where status ='returned';");
+                    $row = mysqli_fetch_assoc($query);
+                    $Returned = $row['total_returned'];
 
+                    ?>
                         <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);margin: 10px;margin-top:0px ">
                             <div class="d-flex align-items-center">
                                 <!-- Left Column: Text and Number -->
                                 <div class="flex-grow-1">
-                                <p class="mb-1" style="font-size: 18px; color: #555;">Total customers</p>
-                                <h1 style="font-size: 64px; font-weight: bold; color:#041623;">9</h1>
+                                <p class="mb-1" style="font-size: 18px; color: #555;">Completed Transactions</p>
+                                <h1 style="font-size: 64px; font-weight: bold; color:#041623;"><?php echo $Returned; ?></h1>
                                 </div>
                                 <!-- Right Column: Image -->
                                 <img src="../assets/images/icons/customer-icon.png" alt="Gown icon" >
                         </div>
                         </div>
 
+                        <?php 
+                    $query = mysqli_query($conn, "SELECT COUNT(status) AS total_unreturned  FROM transactions where status ='unreturned';");
+                    $row = mysqli_fetch_assoc($query);
+                    $Unreturned = $row['total_unreturned'];
+
+                    ?>
                         <div class="wew p-3" style="width: 25%; border-radius: 10px; background-color: white; box-shadow: 0 10px 25px rgba(21, 87, 81, 0.25);margin: 10px;margin-top:0px ">
                             <div class="d-flex align-items-center">
                                 <!-- Left Column: Text and Number -->
                                 <div class="flex-grow-1">
                                 <p class="mb-1" style="font-size: 18px; color:rgb(146, 42, 42);">Unreturned Gowns</p>
-                                <h1 style="font-size: 64px; font-weight: bold; color:rgb(146, 42, 42);">9</h1>
+                                <h1 style="font-size: 64px; font-weight: bold; color:rgb(146, 42, 42);"><?php echo $Unreturned; ?></h1>
                                 </div>
                                 <!-- Right Column: Image -->
                                 <img src="../assets/images/icons/unreturned-icon.png" alt="Gown icon" style="width: 60px;">
                         </div>
                         </div>
 
-                
-
-                    
                 </div>
 
                 <!-- TABLE -->

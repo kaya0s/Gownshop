@@ -25,12 +25,14 @@
             <div class="bg-white rounded shadow-sm p-4 " style="font-family: 'Raleway'cursive;">
             <h2>Order Details </h2>
             <div style="justify-content:space-between " class="row mt-3">
-                <div class="col-md-6">
-                <p><strong>Order Date:</strong> April 28, 2025</p>
-                <p><strong>RETURN DATE:</strong>5 DAYS AFTER ADMIN APPROVAL / April 20, 2025</p>
-                <p><strong>Payment Method:</strong> PAYPAL</p>
-                <br>
-                <p><strong>Shipping To: </strong><?php echo $_SESSION['fullname']; ?><br><strong>ADDRESS:</strong> <?php echo $_SESSION['address'] ?></p>
+                <div  class="col-md-4">
+                    <img style="width:70%" src="../uploads/gowns/<?php echo $gown['image'];?>" alt="">
+                </div>
+                <div class="col-md-5">
+                    <p><strong>RETURN DATE:</strong>5 DAYS AFTER ADMIN APPROVAL</p>
+                    <p><strong>Payment Method:</strong> PAYPAL / SUKI POINTS</p>
+                    <br>
+                    <p><strong>Shipping To: </strong><?php echo $_SESSION['fullname']; ?><br><strong>ADDRESS:</strong> <?php echo $_SESSION['address'] ?></p>
                 </div>
                 <div class="col-md-3">
                 <div style="flex-direction: column;" class="d-flex  justify-content-end gap-">

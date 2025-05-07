@@ -60,8 +60,6 @@
                         $_SESSION['username'] = $_POST['username'];
                         $_SESSION['usertype'] = $usertype;
                         
-
-                        $_SESSION['successmsg'] = "Login successfully!";
                         usleep(550000); // Optional delay
 
 

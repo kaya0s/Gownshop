@@ -14,7 +14,7 @@
             
             $_SESSION['adminmsg'] ="PAYMENT SUCCESSFULLY YOUR BOOKING WILL BE PENDING. \n ADDED 50 SUKI POINTS ADDED";
 
-            header("location: ../../customer/dashboard.php");
+            header("location: ../../customer/homepage.php");
             $stmt->close();
             exit();
         }else{
@@ -25,7 +25,7 @@
 
     }else{
         $_SESSION['errormsg'] = "gown id not set";
-        header("location:  ../../customer/dashboard.php");
+        header("location:  ../../customer/homepage.php");
     }
 
 
