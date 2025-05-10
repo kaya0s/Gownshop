@@ -4,7 +4,7 @@
  
     // HEADER AND NAVIGATION
  require_once('../includes/customer/header.php');
-?>
+?>  
     <!-- ALERT MESSAGE -->
     <?php require('../includes/alertmsg.php')?>
     <!-- Hero Section with Video Background -->

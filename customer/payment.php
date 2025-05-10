@@ -95,6 +95,8 @@ paypal.Buttons({
     onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
             // Redirect to payment-process.php with order info as GET parameters
+
+            <?php $_SESSION['successmsg'] ="PAYMENT SUCCESSFULLY YOUR BOOKING WILL BE PENDING. \n ADDED 50 SUKI POINTS ADDED";?>
             window.location.href = "../includes/customer/payment-process.php";
         });
     }
