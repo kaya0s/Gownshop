@@ -3,7 +3,7 @@
 $status_filter = isset($_GET['status']) ? $_GET['status'] : 'pending';
 
 // Prepare and execute the query based on filter
-$query = "SELECT t.id, t.date_booked, t.status, t.total_price, g.name AS gown_name, u.email 
+$query = "SELECT t.id, t.date_booked,payment_method, t.status, t.total_price, g.name AS gown_name, u.email 
           FROM transactions t
           JOIN gowns g ON t.gown_id = g.id
           JOIN users u ON t.user_id = u.id";
@@ -70,6 +70,7 @@ foreach ($transactionData as $key => $transaction) {
                 <th>Date Booked</th>
                 <th>Price</th>
                 <th>Status</th>
+                <th>Payment_Method</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -87,6 +88,7 @@ foreach ($transactionData as $key => $transaction) {
                         <td><?php echo $transaction['date_booked']; ?></td>
                         <td><?php echo $transaction['total_price']; ?></td>
                         <td><?php echo ucfirst($transaction['status']); ?></td>
+                        <td><?php echo ucfirst($transaction['payment_method']); ?></td>
                         <td>
                             <form method="POST" action="update_transaction.php" class="d-inline">
                                 <input type="hidden" name="id" value="<?php echo $transaction['id']; ?>">
