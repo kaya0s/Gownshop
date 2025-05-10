@@ -1,5 +1,4 @@
 # HJ Gownshop
-
 A web-based gown rental management system with user authentication, including Google OAuth integration.
 
 ## Features
