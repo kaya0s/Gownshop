@@ -11,14 +11,13 @@
             
             mysqli_query($conn, "UPDATE users SET suki_points = suki_points+50 WHERE id = ".$_SESSION['user_id']);
             unset($_SESSION['gown_id'],$_SESSION['price']);
-            
-            $_SESSION['adminmsg'] ="PAYMENT SUCCESSFULLY YOUR BOOKING WILL BE PENDING. \n ADDED 50 SUKI POINTS ADDED";
-
+            $_SESSION['successmsg'] ="PAYMENT SUCCESSFULLY YOUR BOOKING WILL BE PENDING. \n ADDED 50 SUKI POINTS ADDED";
             header("location: ../../customer/homepage.php");
             $stmt->close();
             exit();
         }else{
             $_SESSION['errormsg'] ="Error Payment";
+            
             header("location: ../../customer/payment.php");
             exit();
         }
