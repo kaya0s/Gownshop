@@ -60,9 +60,11 @@ session_start();
                         <li><a class="dropdown-item" href="homepage.php#gown-cocktail">COCKTAIL GOWN</a></li>
                     </ul>
                 </li>
+                <?php if(isset($_SESSION['fullname'])){?>
                 <li class="nav-item">
                     <a class="nav-link" href="my-transaction.php">MY TRANSACTIONS</a>
                 </li>
+                 <?php }?>
             </ul>
             <!-- User Info and Search -->
             <div class="navbar-right">
@@ -72,29 +74,35 @@ session_start();
                 <i class="fas fa-search search-icon" onclick="searchAndScroll()"></i>
             </div>
 
- 
+            <?php if(isset($_SESSION['fullname'])){?>
             <div class="customer-container"  onclick="toggleCustomerDropdown()">
                 <div class="customer-info">
                     <span style="padding-right:10px;"><?php echo $_SESSION['fullname'];?></span>
                     <i class="fas fa-user user-icon" style="padding-right:10px;"></i> 
                 </div>
-
+                
                 <?php
                     $result = mysqli_query($conn,"SELECT suki_points FROM users WHERE id = ".$_SESSION['user_id'].";");
                     $row = mysqli_fetch_assoc($result);
                     $_SESSION['suki_points'] = $row['suki_points'];
+               
                 ?>
                 <div class="customer-dropdown" id="customerDropdown">
-                    <a href="#"> Suki Points: <br> <h5><i class="fas fa-coins me-2"></i><?php echo $row['suki_points']?></h5></a>
+                    
+                    <a href="#"> Suki Points: <br> <h5><i class="fas fa-coins me-2"></i><?php if(isset($_SESSION['user_id']))  echo $row['suki_points'];?></h5></a>
                     <hr>
                     <a href="../auth/logout.php"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
                 </div>
             </div>
-
-            
-            
-            
-
+            <?php
+             }else{
+            ?>
+              <a style="background-color: white;" href="../index.php" class="btn  border-0 rounded-0 px-4 py-2 text-decoration-none ms-5 mx-3">
+                Login
+                </a>
+             <?php
+             }
+            ?>
 
                 </div>
         </div>
