@@ -57,12 +57,12 @@
                              echo htmlspecialchars($_SESSION['signupmsg']); unset($_SESSION['signupmsg']); ?>
                            
                              </p>
-                        <p>already have an account? <a href="../index.php">Log in</a></p>
+                        <p>already have an account? <a style="color:rgb(5, 61, 151); margin-left: 6px;" href="../index.php">Log in</a></p>
                 </form>
             </div>
                             </div>
 
-                            <div class="video_container">
+                            <div style="background-color: #041623 !important;" class="video_container">
                                 <!-- <h1>this is video video conrtainer</h1> -->
                             </div>
 
