@@ -69,10 +69,9 @@ switch ($action) {
         }
         mysqli_stmt_bind_param($stmt, 'i', $transactionId);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
         
         // Mark gown as unavailable
-        $stmt = mysqli_prepare($conn, "UPDATE gowns SET available = 0 WHERE id = ?");
+        $stmt = mysqli_prepare($conn, "UPDATE gowns SET available = null WHERE id = ?");
         if (!$stmt) {
             die('Failed to prepare statement: ' . mysqli_error($conn));
         }
@@ -166,7 +165,7 @@ switch ($action) {
             }
         }
 
-        break;
+        break;  
         
     case 'reject':
         // Delete the transaction
@@ -177,7 +176,7 @@ switch ($action) {
         mysqli_stmt_bind_param($stmt, 'i', $transactionId);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
-            
+
                     // Send rejection email
             if (isset($transaction['email'])) {
                 // Check if email settings are configured
