@@ -8,12 +8,13 @@
 
         if($stmt->execute()){
            
-            
             mysqli_query($conn, "UPDATE users SET suki_points = suki_points+50 WHERE id = ".$_SESSION['user_id']);
-            unset($_SESSION['gown_id'],$_SESSION['price']);
-            $_SESSION['successmsg'] ="PAYMENT SUCCESSFULLY YOUR BOOKING WILL BE PENDING. \n ADDED 50 SUKI POINTS ADDED";
-            header("location: ../../customer/homepage.php");
+
             $stmt->close();
+
+            $_SESSION['successmsg'] ="PAYMENT SUCCESSFULLY PLEASE WAIT FOR THE CONFIRMATION EMAIL.50 POINTS ADDED";
+            header("location: ../../customer/homepage.php");
+           
             exit();
         }else{
             $_SESSION['errormsg'] ="Error Payment";
