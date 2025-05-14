@@ -166,7 +166,7 @@ $unavailableGowns = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM gowns WHE
                         <button class="btn btn-outline-danger" id="unavailable-btn" onclick="filterGowns('unavailable')"><i class="bi bi-x-circle-fill me-1"></i>Unavailable</button>
                         <form method="POST" action="print-gowns.php" class="d-flex">
                             <button type="submit" name="print" class="btn btn-primary w-100">
-                                <i class="bi bi-printer-fill me-2"></i> Print Products
+                                <i class="bi bi-printer-fill me-2"></i> Print Gowns
                             </button>
                         </form>
 
