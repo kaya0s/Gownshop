@@ -1,86 +1,142 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['print'])) {
-    // Corrected path to autoload.php
-    require_once __DIR__ . '/../vendor/autoload.php'; // Correct path to autoload
-    require_once __DIR__ . '/../includes/connection_db.php'; // Correct path to connection_db.php
-    
-    $mpdf = new Mpdf\Mpdf(['orientation' => 'L']); // Ensure the Mpdf class is loaded
-    
+    require_once __DIR__ . '/../vendor/autoload.php';
+    require_once __DIR__ . '/../includes/connection_db.php';
+
+    $mpdf = new \Mpdf\Mpdf(['orientation' => 'P']);
+
     header('Content-Type: application/pdf');
 
-
     $result = mysqli_query($conn, "SELECT * FROM gowns");
-  if(!$result) {
+    if (!$result) {
         die('Query failed: ' . mysqli_error($conn));
     }
     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-    $count = 1; // Initialize count for numbering
+    $count = 1;
     $html = '
     <html>
     <head>
         <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        h1, h4 { text-align: center; color: #333; } /* added h4 */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
-        th { background-color: #f0f0f0; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-    </style>
+            body {
+                font-family: "Times New Roman", Times, serif;
+                margin: 40px;
+                font-size: 12pt;
+                color: #000;
+            }
+
+            .header {
+                text-align: center;
+                border-bottom: 2px solid #333;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+            }
+
+            .company-name {
+                font-size: 20pt;
+                font-weight: bold;
+                color: #222;
+                text-transform: uppercase;
+            }
+
+            .report-title {
+                font-size: 14pt;
+                font-weight: normal;
+                margin-top: 5px;
+                color: #444;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+            }
+
+            th, td {
+                border: 1px solid #444;
+                padding: 8px;
+                text-align: center;
+            }
+
+            th {
+                background-color: #dcdcdc;
+                font-weight: bold;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .signature-section {
+                margin-top: 60px;
+                text-align: left;
+                padding-right: 80px;
+            }
+
+            .signature p {
+                margin: 4px 0;
+                font-size: 12pt;
+            }
+
+            .signature .name {
+                text-decoration: underline;
+                font-weight: bold;
+            }
+
+            .footer {
+                text-align: left;
+                font-size: 10px;
+                color: #888;
+            }
+        </style>
     </head>
     <body>
-        <h4>List of Products</h4>
+        <div class="header">
+            <div class="company-name">HJ Gown Shop</div>
+            <div class="report-title">Product Inventory Report</div>
+        </div>
+
         <table>
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
+                    <th>Gown Name</th>
                     <th>Category</th>
                     <th>Price</th>
-                    <th>STATUS</th>
-                    
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>';
 
-
-    
     foreach ($products as $product) {
-        if($product['available'] === "1"){
-            $status = "AVAILABLE";
-        }else{
-            $status = "UNAVAILABLE";
-        }
+        $status = ($product['available'] === "1") ? "AVAILABLE" : "UNAVAILABLE";
         $html .= '
-                <tr>
-                    <td>' . $count++ . '</td>
-                    <td>' . htmlspecialchars($product['name']) . '</td>
-                    <td>' . htmlspecialchars($product['category_id']) . '</td>
-                    <td>' . htmlspecialchars($product['price']) . '</td>
-                    <td>' . htmlspecialchars($status) . '</td>
-                </tr>';
+            <tr>
+                <td>' . $count++ . '</td>
+                <td>' . htmlspecialchars($product['name']) . '</td>
+                <td>' . htmlspecialchars($product['category_id']) . '</td>
+                <td>₱' . number_format($product['price'], 2) . '</td>
+                <td>' . $status . '</td>
+            </tr>';
     }
 
     $html .= '
             </tbody>
         </table>
+
+        
         <div class="signature-section">
             <div class="signature">
-                <p style="text-decoration: underline;"><strong>Juswa</strong></p>
-                <p><strong> General Manager</strong></p>
-            </div> 
+                <p class="name">Honey Java</p>
+                <p>General Manager</p>
+            </div>
         </div>
-    </body> 
+    </body>
     </html>';
 
-    $mpdf->SetHTMLFooter('
-        <div style="text-align: left; font-size: 10px; color: #aaa;">
-            Page {PAGENO}/{nbpg}
-        </div>');
-
+    $mpdf->SetHTMLFooter('<div class="footer">Page {PAGENO} of {nbpg}</div>');
     $mpdf->WriteHTML($html);
     $mpdf->Output('', 'I');
     exit;
 }
-
 ?>
