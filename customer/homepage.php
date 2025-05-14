@@ -1,9 +1,15 @@
+
 <?php 
 //  DATABASE CONNECTION
  include('../includes/connection_db.php');
  
     // HEADER AND NAVIGATION
  require_once('../includes/customer/header.php');
+        //REMOVING GOWN SESSIONS FROM COOKIE
+if( isset($_SESSION['gown_name'],$_SESSION['price'],$_SESSION['gown_id'])){
+
+    unset($_SESSION['gown_name'],$_SESSION['price'],$_SESSION['gown_id']);
+}
 ?>  
     <!-- ALERT MESSAGE -->
     <?php require('../includes/alertmsg.php')?>
@@ -47,8 +53,9 @@
             if($count>=4){
                 break;
             }
+
             ?>
-                
+            
             <div sty class="col-12 col-sm-6 col-md-4 col-lg-3 text-center" onclick='openDrawer(
                             <?php echo json_encode($row["id"]); ?>,
                             <?php echo json_encode($row["name"]); ?>,
@@ -94,7 +101,7 @@
     <hr>
 
     <!-- MODAL -->
-    <?php include('selectedGownModal.php')?>
+    <?php include('selectedGownmodal.php')?>
 
     <!-- this is the drawer panel scripting -->
     <script>
@@ -102,6 +109,7 @@
         const drawerOverlay = document.getElementById('drawerOverlay');
 
         function openDrawer(id,name,description,image,color,price,sizes) {
+        
         
         drawerPanel.classList.add('active');
         drawerOverlay.classList.add('active');
