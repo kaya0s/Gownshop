@@ -24,12 +24,12 @@
             <table class="table table-striped" style="font-family: 'Raleway'cursive;">
                 <thead class="table-dark">
                 <tr>
-                    <th>Transaction Id</th>
                     <th>Gown Name</th>
                     <th>Date Rented</th>
                     <th>Total</th>
                     <th>Payment Method</th>
                     <th>Status</th> 
+                    <th>Reciept</th> 
 
                 </tr>
                 </thead>
@@ -40,7 +40,7 @@
                     $stmt = $conn->prepare("SELECT gowns.name, transactions.*
                     FROM gowns
                     LEFT JOIN transactions ON gowns.id = transactions.gown_id 
-                    WHERE transactions.user_id = ?");
+                    WHERE transactions.user_id = ? order by id desc");
                         $stmt->bind_param("i", $_SESSION['user_id']);
                         $stmt->execute();
                         $result = $stmt->get_result();
@@ -50,7 +50,6 @@
                 <tr>
                     <?php
                     ?>
-                    <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['date_booked']; ?></td>
                     <td><?php echo $row['total_price']; ?></td>
@@ -68,18 +67,28 @@
                         echo "unknown status";
                     }?>
                 </td>
+                <td>
+                    <!-- Detailed Order Section -->
+                        <div class="d-flex " >
+                            <form method="POST" action="print-transaction.php?id=<?php echo $row['id'];?>" class="d-flex">
+                                <button type="submit" name="print" class="btn btn-primary w-90">
+                                    <i class="bi bi-printer-fill me-2"></i> PRINT Transaction
+                                </button>
+                            </form>
+
+                        </div>
+                
+                </td>
                 </tr>
                 <?php }?>
-                <!-- More rows here -->
                 </tbody>
             </table>
             </div>  
 
-            <!-- Detailed Order Section -->
             
-        </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</div>   
+             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        </div>   
+    </div>
     
         
 
