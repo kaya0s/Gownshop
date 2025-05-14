@@ -15,6 +15,8 @@
     z-index: 9999;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     animation: fadeOut 1.2s ease-in-out 1.2s forwards;
+    text-align: center;
+            white-space: pre-line;
 }
 .error-alert{
     position: fixed;
@@ -30,4 +32,6 @@
     z-index: 9999;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     animation: fadeOut 1.2s ease-in-out 1.2s forwards;
+    text-align: center;
+            white-space: pre-line;
 }
