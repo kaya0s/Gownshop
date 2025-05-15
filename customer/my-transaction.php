@@ -4,8 +4,16 @@
  
     // HEADER AND NAVIGATION
  require_once('../includes/customer/header.php');
-?>     
 
+    
+   
+    // if user not logged cant access this page
+    if(!isset($_SESSION['fullname'] )){
+        header("location:homepage.php");
+        exit();
+    }
+?>     
+    <!-- ALERT MESSAGE -->
     <?php include_once('../includes/alertmsg.php'); ?>
 
     <div class="bg-light text-dark">
@@ -29,7 +37,7 @@
                     <th>Total</th>
                     <th>Payment Method</th>
                     <th>Status</th> 
-                    <th>Reciept</th> 
+                    <th>Actions</th> 
 
                 </tr>
                 </thead>
@@ -71,13 +79,18 @@
                     <!-- Detailed Order Section -->
                         <div class="d-flex " >
                             <form method="POST" action="print-transaction.php?id=<?php echo $row['id'];?>" class="d-flex">
-                                <button type="submit" name="print" class="btn btn-primary w-90">
-                                    <i class="bi bi-printer-fill me-2"></i> PRINT Transaction
+                                <button style="border-radius:0px; margin-right: 10px;" type="submit" name="print" class="btn btn-primary w-90">
+                                    <i class="bi bi-printer-fill me-2"></i> PRINT 
                                 </button>
                             </form>
 
-                        </div>
-                
+                            <form method="POST" action="delete-transaction.php?id=<?php echo $row['id'];?>" class="d-flex">
+                                <button  style="border-radius:0px;" type="submit" name="delete" class="btn btn-danger w-90">
+                                    <i class="bi bi-trash me-2"></i> CANCEL TRANSACTION
+                                </button>
+                            </form>
+                            
+                        </div>    
                 </td>
                 </tr>
                 <?php }?>
@@ -90,11 +103,7 @@
         </div>   
     </div>
     
-        
-
-
-
-        <?php include('../includes/customer/footer.php')?>
+    <?php include('../includes/customer/footer.php')?>
     </body>
     </html> 
 
