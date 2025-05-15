@@ -23,9 +23,4 @@ if($_SESSION['suki_points'] >= 1000){
     exit();
 }
 
-
-
-
-
-
 ?>
