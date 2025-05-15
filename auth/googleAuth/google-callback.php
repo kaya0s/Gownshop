@@ -49,7 +49,7 @@
                     header('Location: ../../customer/homepage.php');
                     exit();
                 }else{
-                    $_SESSION['errormsg'] = "SIGN UP FIRST";
+                    $_SESSION['errormsg'] = "THIS GOOGLE ACCOUNT NOT REGISTERED IN OUR SYSTEM";
 
                     header("location:../../index.php");
                     exit();
