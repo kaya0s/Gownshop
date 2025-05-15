@@ -195,8 +195,6 @@
                 exit;
             }
         
-            $stmt->close(); 
-            $conn->close();
         }
         
     }
