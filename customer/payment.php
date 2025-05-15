@@ -3,10 +3,22 @@
  include('../includes/connection_db.php');
  require_once('../includes/customer/header.php');
 
+    // if user not logged cant access this page
+    if(!isset($_SESSION['fullname'])){
+        header("location: homepage.php");
+        exit();
+    }
+
     if($_SERVER['REQUEST_METHOD'] ==="POST"){
      $_SESSION['gown_id'] = $_POST['gown_id'];
     }   
     
+    //cant acccess this page if gown not set
+    if(!isset($_SESSION['gown_id'])){
+        header("location:homepage.php");
+        exit();
+
+    }
     $result = mysqli_query($conn,"SELECT * FROM GOWNS WHERE ID = ".$_SESSION['gown_id']." ");
     $gown=mysqli_fetch_assoc($result);
 
