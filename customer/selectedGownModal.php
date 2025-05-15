@@ -26,21 +26,23 @@
 
         <!-- Sizes -->
         <div class="row text-start mb-3">
+          <!-- CUSTOMIZE SIZE -->
+          <p><strong>CUSTOMIZE SIZE </strong></p>
           <div class="col-6 mb-3">
             <label for="size-bust" class="fw-bold">Bust</label>
-            <input class="form-control form-control-lg" id="size-bust" type="text" disabled>
+            <input class="form-control form-control-lg" name="size-bust" id="size-bust" type="text" >
           </div>
           <div class="col-6 mb-3">
             <label for="size-waist" class="fw-bold">Waist</label>
-            <input class="form-control form-control-lg" id="size-waist" type="text" disabled>
+            <input class="form-control form-control-lg" name="size-waist" id="size-waist" type="text" >
           </div>
           <div class="col-6 mb-3">
             <label for="size-hips" class="fw-bold">Hips</label>
-            <input class="form-control form-control-lg" id="size-hips" type="text" disabled>
+            <input class="form-control form-control-lg" name="size-hips" id="size-hips" type="text" >
           </div>
           <div class="col-6 mb-3">
             <label for="size-length" class="fw-bold">Length</label>
-            <input class="form-control form-control-lg" id="size-length" type="text" disabled>
+            <input class="form-control form-control-lg" name="size-length" id="size-length" type="text" >
           </div>
         </div>
 
@@ -49,10 +51,10 @@
         <!-- Color & Price --> 
         <div class="mb-3 text-start">
           <label for="gown-color" class="fw-bold">Color</label>
-          <input class="form-control form-control-lg mb-3" id="gown-color" type="text" disabled>
+          <input class="form-control form-control-lg mb-3" id="gown-color" type="text" disabled >
 
           <label for="gown-price" class="fw-bold">Price</label>
-          <input class="form-control form-control-lg" id="gown-price" type="text" disabled>
+          <input class="form-control form-control-lg" id="gown-price" type="text" disabled >
         </div>
 
         <hr>
