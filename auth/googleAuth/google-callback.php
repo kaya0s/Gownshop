@@ -1,4 +1,5 @@
     <?php
+    include('../../includes/connection_db.php');
     require_once('../../vendor/autoload.php');
     session_start();
 
@@ -25,21 +26,37 @@
                 $oauth2 = new Google\Service\Oauth2($client);
                 $userInfo = $oauth2->userinfo->get();
 
-                // Store user data in session
-                $_SESSION['user_type'] = 'google';
-                $_SESSION['user_name'] = $userInfo->name;
-                $_SESSION['user_email'] = $userInfo->email;
-                $_SESSION['user_image'] = $userInfo->picture;
-                $_SESSION['successmsg'] = "Logged in with Google!";
-                
+                $stmt= $conn->prepare("SELECT * FROM USERS WHERE EMAIL = ?");
+                $stmt->bind_param("s",$userInfo->email);
+                $stmt->execute();
+                $result =  $stmt->get_result();
+                $user = $result->fetch_assoc();
 
-                header('Location: ../../admin/dashboard.php');
+                // STORING SESSIONS 
+                $_SESSION['fullname'] = $user['firstname']." ".$user['lastname'];  
+                $_SESSION['address']  = $user['address'];
+                $_SESSION['suki_points'] = $user['suki_points'];
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['usertype'] = $user['user_type'];
+                
+                if($user['user_type'] === "admin"){
+                $_SESSION['successmsg'] = "SUCCESSFULLY LOGGED IN WITH GOOGLE";
+                header('Location: ../../admin/dashboard.php?');
                 exit();
+
+                }elseif($user['user_type'] === "customer"){
+                    $_SESSION['successmsg'] = "SUCCESSFULLY LOGGED IN WITH GOOGLE";
+                    header('Location: ../../customer/homepage.php');
+                    exit();
+                }else{
+                    $_SESSION['errormsg'] = "SIGN UP FIRST";
+
+                    header("location:../../index.php");
+                    exit();
+                }
             } else {
                 throw new Exception("Google OAuth error: " . $token['error']);
-            }
-
-            
+            }  
         } catch (Exception $e) {
             $_SESSION['errormsg'] = "Login failed: " . $e->getMessage();
             header('Location: ../../index.php');
