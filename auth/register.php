@@ -42,7 +42,7 @@
                     
                     <div class="input-group" >
                          <img src="../assets/images/icons/phone.png" alt="Username icon" class="input-icon">
-                        <input type="text" placeholder="Phone Number " name="phone" >
+                        <input type="text" placeholder="Phone Number " name="phone_number" >
                     </div>     
                         <div class="input-group">
                             <img src="../assets/images/icons/password_icon.png" alt="Password icon" class="input-icon">

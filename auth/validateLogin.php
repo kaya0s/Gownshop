@@ -30,7 +30,7 @@
 
                 if ($stmt->num_rows > 0) {
                 // Prepare your statement to get both password and usertype
-                $sql = "SELECT firstname,lastname,id,password,user_type,suki_points,address FROM users WHERE username = ? OR email = ?";
+                $sql = "SELECT firstname,lastname,id,password,user_type,suki_points,address,email FROM users WHERE username = ? OR email = ?";
                 $stmt = mysqli_prepare($conn,$sql);
                 $stmt->bind_param("ss", $_POST['username'],$_POST['username']);
                 $stmt->execute();
@@ -43,7 +43,7 @@
                 $stmt->store_result();
                 
                 // Bind both password and usertype from the result
-                $stmt->bind_result($firstname,$lastname,$id,$db_password, $usertype,$suki_points,$address);
+                $stmt->bind_result($firstname,$lastname,$id,$db_password, $usertype,$suki_points,$address,$email);
                 $stmt->fetch();
 
                     // Verify the password
@@ -57,8 +57,8 @@
                         $_SESSION['address']  = $address;
                         $_SESSION['suki_points'] = $suki_points;
                         $_SESSION['user_id'] = $id;
-                        $_SESSION['username'] = $_POST['username'];
                         $_SESSION['usertype'] = $usertype;
+                        $_SESSION['email']=$email;
                         
                         usleep(550000); // Optional delay
 
@@ -105,7 +105,7 @@
             $username =$_POST['username'];
             $address = $_POST['address'];
             
-            if (empty($firstname)&&empty($lastname)&&empty($lastname)&&empty($username)&&empty($_POST['email'])&&empty($_POST['address'])&&empty($_POST['phone'])&&empty($_POST['password']) ) {
+            if (empty($firstname)&&empty($lastname)&&empty($lastname)&&empty($username)&&empty($_POST['email'])&&empty($_POST['address'])&&empty($_POST['phone_number'])&&empty($_POST['password']) ) {
                 usleep(250000); // 250000 microseconds = 0.5 seconds
                 $_SESSION['signupmsg'] = "Please enter your credentials";
                 header('Location:register.php');
@@ -145,7 +145,7 @@
                 $_SESSION['signupmsg'] = "Invalid email format";
                 header('Location: register.php');
                 exit;
-            } elseif (empty($_POST['phone'])) {
+            } elseif (empty($_POST['phone_number'])) {
                 usleep(250000); // 250000 microseconds = 0.5 seconds
                 $_SESSION['signupmsg'] = "Please enter contact Number";
                 header('Location: register.php');
@@ -178,7 +178,7 @@
         
             $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, username, email, password,contact_number,address) VALUES (?, ?, ?, ?, ?,?,?)");
-            $stmt->bind_param("sssssss", $_POST['firstname'], $_POST['lastname'], $_POST['username'], $_POST['email'],$hashed_password,$_POST['phone'],$address);
+            $stmt->bind_param("sssssss", $_POST['firstname'], $_POST['lastname'], $_POST['username'], $_POST['email'],$hashed_password,$_POST['phone_number'],$address);
             
             if ($stmt->execute()) {
                 usleep(550000);
@@ -189,8 +189,8 @@
                 exit;
             } else {
                 usleep(550000); 
-                $_SESSION['signupmsg'] ='Error in signup';
-                header('Location:../pages/none.php');
+                $_SESSION['successmsg'] ='Error in signup';
+                header('Location:../index.php');
                 
                 exit;
             }
