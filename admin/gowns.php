@@ -102,7 +102,7 @@ $unavailableGowns = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM gowns WHE
                     }
                     ?> </span>
                     </span>
-                    <img src="../assets/images/kayaos.jpg" alt="user">  
+                    <img style="background-color: white; width: 35px; height: 35px;" src="../assets/images/icons/customer-icon.png" alt="user">  
 
                 </div>
             </div>
