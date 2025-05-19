@@ -14,8 +14,12 @@
 
     $client->addScope($_ENV['email']);
     $client->addScope($_ENV['profile']);
+    $client->setPrompt('select_account');
 
-    header('location:'.$client->createAuthUrl());
+    // Create auth URL with prompt=select_account parameter
+    $authUrl = $client->createAuthUrl();
+    
+    header('location:'.$authUrl);
     exit();
 
 

@@ -21,7 +21,7 @@ A web-based gown rental management system with user authentication, including Go
 ## Installation
 
 1. Clone the repository:
-git clone https://github.com/yourusername/hj-gownshop.git
+git clone https://github.com/kaya0s/hj-gownshop.git
 cd hj-gownshop
 
 2. Install dependencies:
