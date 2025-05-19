@@ -36,7 +36,7 @@
             <script src="../assets/js/login.js"></script>
     </head>
     <body>
-       <div class="main_container">
+       <div class="main_container" style="background-color: #041623;">
 
         <div class="login_container">
             <div class="card">
@@ -47,8 +47,8 @@
                 <h3 style="color: black; text-align: center; ">Enter Verification Code</h3>
                     
                     <div class="input-group" >
-                         <img src="../assets/images/user (1).png" alt="Username icon" class="input-icon">
-                        <input type="text" placeholder="code" name="code" >
+                         
+                        <input type="text" placeholder="Enter code here" name="code" >
                     </div> 
                         
                         <button class="login-btn" type="submit" value="signup"  name="sendcode" >Send Code</button>
@@ -60,7 +60,7 @@
                              
                         
                 </form>
-                <p>Don't have an account? <a href="pages/signup.php">Sign up</a></p>
+                <p>Don't have an account? <a style="color:rgb(5, 61, 151); margin-left: 6px;" href="pages/signup.php">Sign up</a></p>
             </div>
         </div>
 
