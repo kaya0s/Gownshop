@@ -6,76 +6,65 @@ session_start();
 require_once '../includes/connection_db.php';
 
 // Check if user is logged in
-if (!isset($_SESSION['fullname']) || !isset($_SESSION['email'])) {
-    // Not logged in, redirect to landing page
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['errormsg'] = "Please login to submit a review";
     header("Location: homepage.php");
     exit();
 }
 
-// Check if form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate and sanitize inputs
-    $gown_id = $_POST['gown_id'];
-    $fullname = $_SESSION['fullname']; // Get fullname from session
-    $rating = $_POST['rating']? filter_var($_POST['rating'], FILTER_SANITIZE_NUMBER_INT) : 0;
-    $comment = $_POST['comment'] ;
-    
-    // Additional validation
-    if (empty($gown_id) || $gown_id <= 0) {
-        $_SESSION['errormsg'] = "Invalid gown selection.";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $gown_id = isset($_POST['gown_id']) ? intval($_POST['gown_id']) : 0;
+    $rating = isset($_POST['rating']) ? intval($_POST['rating']) : 0;
+    $comment = isset($_POST['comment']) ? trim($_POST['comment']) : '';
+    $user_email = $_SESSION['email'];
+
+    // Validate inputs
+    if ($gown_id <= 0 || $rating < 1 || $rating > 5 || empty($comment)) {
+        $_SESSION['errormsg'] = "Invalid review data";
         header("Location: homepage.php");
         exit();
     }
-    
-    if ($rating < 1 || $rating > 5) {
-        $_SESSION['errormsg'] = "Please provide a valid rating (1-5 stars).";
-        header("Location: homepage.php");
-        exit();
-    }
-    
-    if (empty($comment)) {
-        $_SESSION['errormsg'] = "Please provide a review comment.";
-        header("Location: homepage.php");
-        exit();
-    }
-    
+
     // Check if user has already reviewed this gown
-    $stmt = $conn->prepare("SELECT id FROM gown_reviews WHERE gown_id = ? AND user_email = ?");
-    $stmt->bind_param("is", $gown_id, $_SESSION['email']);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        // User has already reviewed this gown, update the existing review
-        $review = $result->fetch_assoc();
-        $review_id = $review['id'];
+    $check_query = "SELECT * FROM gown_reviews WHERE gown_id = ? AND user_email = ?";
+    $check_stmt = mysqli_prepare($conn, $check_query);
+    mysqli_stmt_bind_param($check_stmt, "is", $gown_id, $user_email);
+    mysqli_stmt_execute($check_stmt);
+    $result = mysqli_stmt_get_result($check_stmt);
+
+    if (mysqli_num_rows($result) > 0) {
+        // Update existing review
+        $update_query = "UPDATE gown_reviews SET star = ?, comment = ? WHERE gown_id = ? AND user_email = ?";
+        $update_stmt = mysqli_prepare($conn, $update_query);
+        mysqli_stmt_bind_param($update_stmt, "isis", $rating, $comment, $gown_id, $user_email);
         
-        $stmt = $conn->prepare("UPDATE gown_reviews SET star = ?, comment = ? WHERE id = ?");
-        $stmt->bind_param("isi", $rating, $comment, $review_id);
-        
-        if ($stmt->execute()) {
-            $_SESSION['successmsg'] = "Your review has been updated successfully.";
+        if (mysqli_stmt_execute($update_stmt)) {
+            $_SESSION['successmsg'] = "Review updated successfully!";
         } else {
-            $_SESSION['errormsg'] = "Error updating your review. Please try again. " . $conn->error;
+            $_SESSION['errormsg'] = "Error updating review: " . mysqli_error($conn);
         }
+        
+        mysqli_stmt_close($update_stmt);
     } else {
         // Insert new review
-        $stmt = $conn->prepare("INSERT INTO gown_reviews (gown_id, user_email, star, comment) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("isss", $gown_id, $_SESSION['email'], $rating, $comment);
+        $query = "INSERT INTO gown_reviews (gown_id, user_email, star, comment) 
+                  VALUES (?, ?, ?, ?)";
         
-        if ($stmt->execute()) {
-            $_SESSION['successmsg'] = "Thank you for your review!";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "isis", $gown_id, $user_email, $rating, $comment);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            $_SESSION['successmsg'] = "Review submitted successfully!";
         } else {
-            $_SESSION['errormsg'] = "Error submitting your review. Please try again. " . $conn->error;
+            $_SESSION['errormsg'] = "Error submitting review: " . mysqli_error($conn);
         }
+        
+        mysqli_stmt_close($stmt);
     }
     
-    // Redirect back to previous page or gown details page
-    if (isset($_SERVER['HTTP_REFERER'])) {
-        header("Location: " . $_SERVER['HTTP_REFERER']);
-    } else {
-        header("Location: homepage.php");
-    }
-    exit();
+    mysqli_stmt_close($check_stmt);
 }
+
+header("Location: homepage.php");
+exit();
 ?>
