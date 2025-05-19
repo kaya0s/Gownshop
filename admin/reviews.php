@@ -98,7 +98,7 @@ require('../includes/connection_db.php');
                     }
                     ?> </span>
                     </span>
-                    <img src="../assets/images/kayaos.jpg" alt="user">  
+                    <img style="background-color: white; width: 35px; height: 35px;" src="../assets/images/icons/customer-icon.png" alt="user">  
 
                 </div>
             </div>
@@ -172,3 +172,4 @@ require('../includes/connection_db.php');
 
 
 </html>
+
