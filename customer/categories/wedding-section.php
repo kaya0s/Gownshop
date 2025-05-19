@@ -24,6 +24,7 @@
                                 <?php echo json_encode($row["description"]); ?>,
                                 <?php echo json_encode($row["image"]); ?>,
                                 <?php echo json_encode($row["color"]); ?>,
+                                <?php echo json_encode($row["price"]); ?>,
                                 <?php echo json_encode($sizes); ?>  
                                                 )'>
                     <img src="../uploads/gowns/<?php echo $row['image']; ?>" class="img-thumbnail custom-image" alt="This is the Gown Image"  style="width: 100%; height: 500px; object-fit: cover; transform: scale(1); transition: transform 0.4s;"
