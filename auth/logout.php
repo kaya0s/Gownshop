@@ -27,6 +27,6 @@ session_start();
 $_SESSION['successmsg'] = "You have successfully logged out.";
 
 // Redirect (use absolute URL for reliability)
-header("Location: ../index.php");
+header("Location: ../customer/homepage.php");
 exit(); // Always exit after header redirect
 ?>
