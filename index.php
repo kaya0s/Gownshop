@@ -37,10 +37,11 @@ session_start();
                             <input type="password" placeholder="Password" name="password" id="passwordInput">
                             <img src="assets/images/icons/pass_visible.png" alt="Show Password" class="password-icon" id="hidePassword">
                             <img src="assets/images/icons/pass_invisible.png" alt="Hide Password" class="password-icon" id="showPassword">
-                            <!-- SIGN IN WITH GOOGLE -->
+                            
                             
                         </div>
-                            
+                        <div class="g-recaptcha" data-site="<?= htmlspecialchars($siteKey) ?>"></div>
+                        <!-- SIGN IN WITH GOOGLE -->    
 
                         <?php
                     require_once('vendor/autoload.php');
@@ -61,6 +62,11 @@ session_start();
 
                     <!-- Update the Google Sign-In button to use the generated auth URL -->
                     <button class="login-btn" type="submit" value="login" name="login">Log in</button>
+                    
+                    
+                    <!-- recaptcha dri -->
+                    <div class="g-recaptcha" data-site="<?= htmlspecialchars($siteKey) ?>"></div>
+                    
                     <a href="<?php echo $authUrl; ?>" class="google-btn">
                         <svg class="google-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48">
                             <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
@@ -96,6 +102,8 @@ session_start();
                 </div>
             </div>
         </div>
+
+        <script src="https://www.google.com/recaptcha/api.js"></script>
      </body>
 <style>
         .video-container {
@@ -147,4 +155,6 @@ session_start();
       margin-right: 12px;
     }
      </style>
+
+     
 </html>
