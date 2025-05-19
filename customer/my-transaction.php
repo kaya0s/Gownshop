@@ -4,12 +4,9 @@
  
     // HEADER AND NAVIGATION
  require_once('../includes/customer/header.php');
-
-    
-   
     // if user not logged cant access this page
     if(!isset($_SESSION['fullname'] )){
-        header("location:homepage.php");
+        header("Location: homepage.php");
         exit();
     }
 ?>     
@@ -21,7 +18,7 @@
             <h1 class="text-center mb-5">My Transactions</h1>
 
              <!-- Suki Points Section -->
-            <div class="alert alert-info text-center mb-5" style="font-family: 'Raleway';">
+            <div class="alert alert-info text-center mb-5" style="font-family:'aboreto',sans-serif;">
                 
                 <h5>You have <strong><?php echo $_SESSION['suki_points'];?> </strong> Suki Points💎</h5>
                 <p>You can use your points to get discounts on future rentals!</p>
@@ -84,11 +81,15 @@
                                 </button>
                             </form>
 
-                            <form method="POST" action="delete-transaction.php?id=<?php echo $row['id'];?>" class="d-flex">
+                            <?php 
+                            if($row['status'] == "pending"){?>
+                                <form method="POST" action="delete-transaction.php?id=<?php echo $row['id'];?>" class="d-flex">
                                 <button  style="border-radius:0px;" type="submit" name="delete" class="btn btn-danger w-90">
                                     <i class="bi bi-trash me-2"></i> CANCEL TRANSACTION
                                 </button>
                             </form>
+
+                         <?php }?>
                             
                         </div>    
                 </td>
