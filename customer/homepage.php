@@ -1,4 +1,3 @@
-
 <?php 
 //  DATABASE CONNECTION
  include('../includes/connection_db.php');
@@ -44,16 +43,14 @@ if( isset($_SESSION['gown_name'],$_SESSION['price'],$_SESSION['gown_id'])){
         
         $count = 0;
         
-        $result=mysqli_query($conn,"Select * from gowns where available = 1 AND  available  = 1 order by id desc;");
+        $result=mysqli_query($conn,"Select * from gowns where available = 1 order by id desc;");
         if(mysqli_num_rows($result ) > 0){
             
         while($row = mysqli_fetch_assoc($result) ){
             $sizes = explode(',',$row['size']);
-
             if($count>=4){
                 break;
             }
-
             ?>
             
             <div sty class="col-12 col-sm-6 col-md-4 col-lg-3 text-center" onclick='openDrawer(
@@ -91,7 +88,7 @@ if( isset($_SESSION['gown_name'],$_SESSION['price'],$_SESSION['gown_id'])){
     <?php require('categories/evening-section.php');?>
     <hr>
     <!-- DEBUT GOWNS SECTION -->
-    <?php require('categories/debut-section.php');?>
+    <?php require('categories/debut-section.php');?> 
     <hr>
     <!-- BALL GOWNS SECTION -->
     <?php require('categories/ball-section.php');?>
@@ -103,39 +100,10 @@ if( isset($_SESSION['gown_name'],$_SESSION['price'],$_SESSION['gown_id'])){
     <!-- MODAL -->
     <?php include('selectedGownmodal.php')?>
 
-    <!-- this is the drawer panel scripting -->
-    <script>
-        const drawerPanel = document.getElementById('drawerPanel');
-        const drawerOverlay = document.getElementById('drawerOverlay');
-
-        function openDrawer(id,name,description,image,color,price,sizes) {
-        
-        
-        drawerPanel.classList.add('active');
-        drawerOverlay.classList.add('active');
-        document.getElementById("gown-id").value = id;
-        document.getElementById("gownName").innerText = name;
-        document.getElementById("description").innerText = description;
-        document.getElementById("gown-color").value = color;
-        document.getElementById("gown-image").src = "../uploads/gowns/" + image;
-        document.getElementById("size-bust").value = sizes[0];
-        document.getElementById("size-waist").value = sizes[1];
-        document.getElementById("size-hips").value = sizes[2];  
-        document.getElementById("size-length").value = sizes[3];
-        document.getElementById("gown-price").value = "PHP "+ price;
-        
-
-        }
-
-        function closeDrawer() {
-        drawerPanel.classList.remove('active');
-        drawerOverlay.classList.remove('active');
-        }
-    </script>
-    
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/autoloadvideo.js" ></script>
+    <script src="../assets/js/gown-drawer.js" ></script>
 
     <!-- FOOTER -->
     <?php include('../includes/customer/footer.php');?>
