@@ -7,9 +7,9 @@
                 <h5>HJ GOWNSHOP</h5>
                 <p>Creating dream wedding dresses since 2013</p>
                 <div class="social-icons">
-                    <i class="fab fa-facebook me-3"></i>
+                    <i class="fab fa-facebook me-3"><a href="https://www.facebook.com/honeyjava17"></a></i>
                     <i class="fab fa-instagram me-3"></i>
-                    <i class="fab fa-pinterest me-3"></i>
+                    <i class="fab fa-tiktok me-3"></i>
                 </div>
 
                 <!-- Shop Feedback Form -->
@@ -25,19 +25,19 @@
             <div class="col-md-4">
                 <h5>QUICK LINKS</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white">LATEST COLLECTIONS</a></li>
-                    <li><a href="#" class="text-white">Gown Categories</a></li>
-                    <li><a href="#" class="text-white">Store Finder</a></li>
-                    <li><a href="#" class="text-white">About Us</a></li>
-                    <li><a href="#" class="text-white">Contact</a></li>
+                    <li><a href="../customer/homepage.php#gown-latest" class="text-white">LATEST COLLECTIONS</a></li>
+                    <li><a href="../customer/homepage.php" class="text-white">Gown Categories</a></li>
+                  
+                    <li><a href="../customer/homepage.php#gown-wedding" class="text-white">About Us</a></li>
+                    <li><a href="../customer/homepage.php#gown-wedding" class="text-white">Contact</a></li>
                 </ul>
             </div>
             <div class="col-md-4">
                 <h5>CONTACT US</h5>
                 <ul class="list-unstyled">
                     <li>Email: info@hjgownshop.com</li>
-                    <li>Phone: +63 (800) 555-0123</li>
-                    <li>Address:MALAYBALAY,  BUKIDNON PH 8700</li>
+                    <li>Phone: +63 9301715827</li>
+                    <li>Address:Pinewood Subd. San Jose Malaybalay City, Bukidnon</li>
                 </ul>
             </div>
         </div>
