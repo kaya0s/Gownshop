@@ -4,6 +4,12 @@
 
     if(isset($_POST['submit-feedback'])) {
         $comment = $_POST['comment'];
+    
+        if(empty($_SESSION['user_id'])){
+             $_SESSION['errormsg']  = "PLEASE LOG IN FIRST";
+        header('location: homepage.php');   
+        }
+
 
      $query = 'INSERT INTO reviews (user_id,comment) values(?,?)';
      $stmt = $conn->prepare($query);
