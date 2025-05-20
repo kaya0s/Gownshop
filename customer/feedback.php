@@ -10,8 +10,7 @@
         header('location: homepage.php');   
         }
 
-
-     $query = 'INSERT INTO reviews (user_id,comment) values(?,?)';
+     $query = 'INSERT INTO shop_reviews (user_id,comment) values(?,?)';
      $stmt = $conn->prepare($query);
      $stmt->bind_param('is',$_SESSION['user_id'],$comment);
      
