@@ -1,4 +1,3 @@
-
 <!-- Footer -->
 <footer class="text-white py-5" style="background-color: #041623;">
     <div class="container">
@@ -28,8 +27,9 @@
                     <li><a href="../customer/homepage.php#gown-latest" class="text-white">LATEST COLLECTIONS</a></li>
                     <li><a href="../customer/homepage.php" class="text-white">Gown Categories</a></li>
                   
-                    <li><a href="../customer/homepage.php#gown-wedding" class="text-white">About Us</a></li>
+                    
                     <li><a href="../customer/homepage.php#gown-wedding" class="text-white">Contact</a></li>
+                    <li><a href="../customer/developers.php" class="text-white">DEVELOPERS</a></li>
                 </ul>
             </div>
             <div class="col-md-4">

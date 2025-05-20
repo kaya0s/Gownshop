@@ -117,7 +117,7 @@ paypal.Buttons({
         return actions.order.create({
             purchase_units: [{
                 amount: {
-                    value: "<?php echo htmlspecialchars($gown['price'], ENT_QUOTES, 'UTF-8'); ?>"
+                    value: "<?php echo htmlspecialchars(($gown['price']+ ($gown['price']*0.20)), ENT_QUOTES, 'UTF-8'); ?>"
                 }
             }]
         });
@@ -125,8 +125,6 @@ paypal.Buttons({
     onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
             // Redirect to payment-process.php with order info as GET parameters
-
-            <?php $_SESSION['successmsg'] ="PAYMENT SUCCESSFULLY YOUR BOOKING WILL BE PENDING. \n ADDED 50 SUKI POINTS ADDED";?>
             window.location.href = "../includes/customer/payment-process.php";
         });
     }
