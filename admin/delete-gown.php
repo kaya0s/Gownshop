@@ -9,6 +9,8 @@ if ($id <= 0) {
 }
 
 try {
+    // DELETE GOWN REVIEWS  FOR THIS GOWN DELETE SELECTED
+    mysqli_query($conn, "DELETE FROM gown_reviews WHERE gown_id = $id");
     // First get the image filename
     $imageFilename = '';
     $query = "SELECT image FROM gowns WHERE id = ?";
