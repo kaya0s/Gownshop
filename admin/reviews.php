@@ -112,7 +112,7 @@ require('../includes/connection_db.php');
             <!-- Button trigger modal -->
             <?php 
             
-            $query = mysqli_query($conn, "SELECT COUNT(*) AS total_reviews FROM reviews;");
+            $query = mysqli_query($conn, "SELECT COUNT(*) AS total_reviews FROM shop_reviews;");
             $row = mysqli_fetch_assoc($query);
             $totalReviews = $row['total_reviews'];
             
@@ -134,7 +134,7 @@ require('../includes/connection_db.php');
             </div>
             <h3>Shop Reviews</h3>    
                 <?php 
-                $result = mysqli_query($conn, "SELECT reviews.*,users.* FROM reviews left join users on reviews.user_id =users.id");    
+                $result = mysqli_query($conn, "SELECT shop_reviews.*,users.* FROM shop_reviews left join users on shop_reviews.user_id =users.id");    
                 while($row = mysqli_fetch_assoc($result)){
                 ?>
                 <br>
