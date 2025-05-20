@@ -17,8 +17,8 @@
         else{
             $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $query = "UPDATE users SET password = '$hashed_password' WHERE email = '{$_SESSION['email']}'";
-    
-            usleep(50000);
+            mysqli_query($conn, $query);
+            
             $_SESSION['successmsg'] = "Password changed successfully! You can now login with your new password.";
             header("location: ../../index.php");
            
