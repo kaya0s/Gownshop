@@ -72,7 +72,7 @@ $authUrl = $client->createAuthUrl();
             .card {
                 width: 100%;
                 text-align: center;
-                background: rgba(255, 255, 255, 0.07);
+                background: rgba(255, 255, 255, 0.0);
                 padding: 40px;
                 border: 1px solid rgba(255, 255, 255, 0.12);
                 backdrop-filter: blur(8px);
