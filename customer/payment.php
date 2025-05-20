@@ -22,15 +22,19 @@
     $result = mysqli_query($conn,"SELECT * FROM GOWNS WHERE ID = ".$_SESSION['gown_id']." ");
     $gown=mysqli_fetch_assoc($result);
 
-    
-     $_SESSION['price']=$gown['price'];
+    // Price breakdown
+    $gown_price = $gown['price'];
+    $deposit = $gown_price * 0.20;
+    $total_price = $gown_price + $deposit;
+
+    $_SESSION['price']=$gown['price'];
 
     // HEADER AND NAVIGATION
  
  include('../includes/alertmsg.php');
 ?>
     <div class="bg-light text-dark">
-        <div class="container py-5">
+        <div class="container py-4">
             <h1 class="text-center mb-5"></h1>
 
             <!-- Detailed Order Section -->
@@ -49,7 +53,7 @@
                     <p><strong>SHOP LOCATION:</strong> pay over the counter / direct rent</p>
                     
                     <!-- MAP FRAME -->
-                        <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1974.9947514410844!2d125.12801621478226!3d8.102550045120761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ff01c35c7fae59%3A0x9b3fbb15fcd96554!2sHJ%20Wedding%20%26%20Events%20Gownshop!5e0!3m2!1sen!2sph!4v1747205876161!5m2!1sen!2sph" width="400" height="260" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1974.9947514410844!2d125.12801621478226!3d8.102550045120761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ff01c35c7fae59%3A0x9b3fbb15fcd96554!2sHJ%20Wedding%20%26%20Events%20Gownshop!5e0!3m2!1sen!2sph!4v1747205876161!5m2!1sen!2sph" width="400" height="210" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     
                 </div>
                 <div class="col-md-3">
@@ -78,18 +82,19 @@
                 </div>
             </div>
 
-            <h5 class="mt-4">Gown Rent:</h5>
             <ul class="list-group list-group-flush mb-3">
                 <li class="list-group-item d-flex justify-content-between">
+                    <span>Product Price:</span>
+                    <span>₱<?php echo number_format($gown_price, 2); ?></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
-                <span><h3><?php echo $gown['name'] ?></h3></span>
-                <span><h3><strong>Total: ₱<?php echo $gown['price']; 
-
-                $_SESSION['gown_name'] = $gown['name'];
-                $_SESSION['price'] = $gown['price'];
-                ?></strong></h3></span>
-            
+                    <span>Deposit (20%):</span>
+                    <span>₱<?php echo number_format($deposit, 2); ?></span>
+                </li>
+               
+                <li class="list-group-item d-flex justify-content-between">
+                    <span><h3><?php echo $gown['name'] ?></h3></span>
+                    <span><h3><strong>₱<?php echo number_format($total_price, 2); ?></strong></h3></span>
                 </li>
             </ul>
             <div class="text-end mb-3">    
@@ -117,7 +122,7 @@ paypal.Buttons({
         return actions.order.create({
             purchase_units: [{
                 amount: {
-                    value: "<?php echo htmlspecialchars(($gown['price']+ ($gown['price']*0.20)), ENT_QUOTES, 'UTF-8'); ?>"
+                    value: "<?php echo htmlspecialchars($total_price, ENT_QUOTES, 'UTF-8'); ?>"
                 }
             }]
         });
