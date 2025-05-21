@@ -71,7 +71,7 @@ $authUrl = $client->createAuthUrl();
             .card {
                 width: 100%;
                 text-align: center;
-                background: rgba(255, 255, 255, 0.07);
+                background:  #041623;
                 padding: 40px;
                 border: 1px solid rgba(255, 255, 255, 0.12);
                 backdrop-filter: blur(8px);
@@ -314,7 +314,7 @@ $authUrl = $client->createAuthUrl();
 
                         <div class="input-group">
                             <i class="fas fa-lock input-icon"></i>
-                            <input type="password" placeholder="Password" name="password" id="passwordInput" required>
+                            <input type="password" placeholder="Password" name="password" id="passwordInput" minlength="8" required>
                             <i class="fas fa-eye password-icon" id="showPassword"></i>
                             <i class="fas fa-eye-slash password-icon" id="hidePassword" style="display: none;"></i>
                         </div>

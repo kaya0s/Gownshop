@@ -1,4 +1,47 @@
 <?php
+require_once('../vendor/autoload.php');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+session_start();
+
+// reCAPTCHA validation before any login logic
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+    // Check if reCAPTCHA response exists
+    if (empty($_POST['g-recaptcha-response'])) {
+        $_SESSION['loginmsg'] = "Please complete the reCAPTCHA.";
+        header("Location: ../index.php");
+        exit();
+    }
+
+    // Verify reCAPTCHA with Google
+    $recaptcha_secret = $_ENV['RECAPTCHA_SECRET_KEY'];
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+    $verify_url = "https://www.google.com/recaptcha/api/siteverify";
+    $data = [
+        'secret' => $recaptcha_secret,
+        'response' => $recaptcha_response,
+        'remoteip' => $_SERVER['REMOTE_ADDR']
+    ];
+    $options = [
+        'http' => [
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($data)
+        ]
+    ];
+    $context = stream_context_create($options);
+    $result = file_get_contents($verify_url, false, $context);
+    $result_json = json_decode($result);
+
+    // Debug: log the response from Google
+    file_put_contents(__DIR__ . '/../recaptcha_debug.txt', $result);
+
+    if (!$result_json->success) {
+        $_SESSION['loginmsg'] = "reCAPTCHA verification failed. Please try again.";
+        header("Location: ../index.php");
+        exit();
+    }
+}
 
     class LoginSignupPage{
         // login validation

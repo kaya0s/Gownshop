@@ -58,9 +58,9 @@
                 <label for="email">Email</label>
                 <input type="email" name="email" class="form-control"required >
                 <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" required>
+                <input type="password" name="password" class="form-control" minlength="8" required>
                 <label for="repassword">Confirm Password</label>
-                <input type="password" name="repassword" class="form-control" required>
+                <input type="password" name="repassword" class="form-control" minlength="8" required>
 
         </div>
         <div class="modal-footer">

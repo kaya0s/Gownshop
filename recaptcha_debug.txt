@@ -1,0 +1,5 @@
+{
+  "success": true,
+  "challenge_ts": "2025-05-21T01:34:00Z",
+  "hostname": "localhost"
+}
